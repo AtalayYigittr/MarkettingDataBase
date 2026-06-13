@@ -29,6 +29,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .nav-item i{font-size:17px;flex-shrink:0}
 .nav-badge{margin-left:auto;background:var(--bg4);color:var(--text3);font-size:10px;padding:1px 6px;border-radius:99px;font-weight:500}
 .nav-item.active .nav-badge{background:var(--accent-border);color:var(--accent2)}
+.nav-section{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;padding:10px 10px 4px;margin-top:4px}
 .sidebar-footer{padding:12px 10px;border-top:1px solid var(--border)}
 .user-chip{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--radius);background:var(--bg3)}
 .user-avatar{width:28px;height:28px;border-radius:50%;background:var(--accent-bg);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--accent2);flex-shrink:0;overflow:hidden}
@@ -46,14 +47,16 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .btn{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--radius);font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:var(--bg3);color:var(--text1);transition:all .15s;white-space:nowrap;font-family:inherit}
 .btn:hover{background:var(--bg4)}.btn:disabled{opacity:.4;cursor:not-allowed}
 .btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn-primary:hover{background:#7a88ff;border-color:#7a88ff}
+.btn-primary:hover{background:#7a88ff}
 .btn-danger{background:var(--red-bg);border-color:rgba(248,113,113,0.3);color:var(--red)}
 .btn-danger:hover{background:rgba(248,113,113,0.2)}
 .btn-success{background:var(--green-bg);border-color:rgba(52,211,153,0.3);color:var(--green)}
 .btn-success:hover{background:rgba(52,211,153,0.2)}
+.btn-amber{background:var(--amber-bg);border-color:rgba(251,191,36,0.3);color:var(--amber)}
+.btn-amber:hover{background:rgba(251,191,36,0.2)}
 .btn-sm{padding:5px 10px;font-size:12px}.btn-icon{padding:7px;gap:0}
 .btn-google{background:#fff;color:#3c4043;border-color:#dadce0;font-size:14px;padding:10px 20px;border-radius:8px;font-weight:500}
-.btn-google:hover{background:#f8f9fa;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+.btn-google:hover{background:#f8f9fa}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
 .stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;position:relative;overflow:hidden}
 .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
@@ -62,7 +65,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .stat-card.blue .stat-icon{background:var(--accent-bg);color:var(--accent2)}.stat-card.green .stat-icon{background:var(--green-bg);color:var(--green)}.stat-card.amber .stat-icon{background:var(--amber-bg);color:var(--amber)}.stat-card.purple .stat-icon{background:rgba(167,139,250,0.1);color:#a78bfa}
 .stat-value{font-size:26px;font-weight:600;color:var(--text1);line-height:1}.stat-label{font-size:12px;color:var(--text3);margin-top:4px}
 .table-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
-.table-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.table-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .table-header h2{font-size:14px;font-weight:600;color:var(--text1)}
 table{width:100%;border-collapse:collapse}
 thead th{padding:10px 16px;font-size:11px;font-weight:600;color:var(--text3);text-align:left;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border);background:var(--bg)}
@@ -79,7 +82,6 @@ tbody td{padding:12px 16px;font-size:13px;vertical-align:middle}
 .form-card h3{font-size:14px;font-weight:600;color:var(--text1);margin-bottom:18px;display:flex;align-items:center;gap:8px}
 .form-card h3 i{color:var(--accent2)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
 .form-group label{font-size:12px;font-weight:500;color:var(--text2)}
 .form-group label .req{color:var(--red);margin-left:2px}
@@ -98,7 +100,7 @@ tbody td{padding:12px 16px;font-size:13px;vertical-align:middle}
 .file-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .file-chip{display:flex;align-items:center;gap:7px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:5px 8px 5px 5px;font-size:12px;color:var(--text1)}
 .file-chip img{width:30px;height:30px;object-fit:cover;border-radius:5px}
-.chip-name{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip-name{max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .chip-remove{background:none;border:none;color:var(--text3);cursor:pointer;padding:2px;border-radius:4px;display:flex;line-height:1;font-size:15px;transition:color .15s}
 .chip-remove:hover{color:var(--red)}
 .form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;padding-top:18px;border-top:1px solid var(--border)}
@@ -114,16 +116,38 @@ tbody td{padding:12px 16px;font-size:13px;vertical-align:middle}
 .ean-row{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius)}
 .ean-row.used{opacity:.45}
 .ean-code-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text1)}
-.ean-assigned{font-size:11px;color:var(--text3)}
-.ean-available{font-size:11px;color:var(--green)}
-/* brands */
 .brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:4px}
 .brand-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;position:relative}
 .brand-logo-preview{width:80px;height:56px;object-fit:contain;border-radius:6px;background:white;padding:6px}
 .brand-logo-placeholder{width:80px;height:56px;border-radius:6px;background:var(--bg4);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:24px}
 .brand-name{font-size:13px;font-weight:500;color:var(--text1);text-align:center}
 .brand-delete{position:absolute;top:8px;right:8px}
-/* catalog selection */
+/* marketing materials */
+.material-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.material-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:border-color .15s}
+.material-card:hover{border-color:var(--border2)}
+.material-img-wrap{position:relative;background:var(--bg);height:160px;display:flex;align-items:center;justify-content:center;cursor:zoom-in;overflow:hidden}
+.material-img-wrap img{max-width:100%;max-height:100%;object-fit:contain}
+.material-img-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0);transition:background .2s;display:flex;align-items:center;justify-content:center;opacity:0;transition:all .2s}
+.material-img-wrap:hover .material-img-overlay{background:rgba(0,0,0,0.5);opacity:1}
+.material-res-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.7);color:#fff;font-size:10px;padding:2px 7px;border-radius:99px;font-family:'JetBrains Mono',monospace}
+.material-body{padding:12px 14px}
+.material-name{font-size:13px;font-weight:500;color:var(--text1);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.material-usage{font-size:11px;color:var(--text3);margin-bottom:8px;line-height:1.4}
+.material-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.material-tag{font-size:10px;padding:2px 7px;border-radius:99px;background:var(--accent-bg);color:var(--accent2);border:1px solid var(--accent-border)}
+.material-actions{display:flex;gap:6px}
+.usage-filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.usage-filter{padding:5px 12px;border-radius:99px;font-size:12px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);cursor:pointer;transition:all .15s}
+.usage-filter:hover{background:var(--bg4);color:var(--text1)}
+.usage-filter.active{background:var(--accent-bg);color:var(--accent2);border-color:var(--accent-border)}
+/* lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9990;display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:80vh;object-fit:contain;border-radius:var(--radius-lg)}
+.lightbox-info{color:var(--text2);font-size:13px;text-align:center}
+.lightbox-close{position:absolute;top:20px;right:24px;background:none;border:none;color:white;font-size:24px;cursor:pointer;padding:8px}
+/* catalog */
 .catalog-sel-row{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all .15s}
 .catalog-sel-row:hover{border-color:var(--border2)}
 .catalog-sel-row.selected{border-color:var(--accent);background:var(--accent-bg)}
@@ -132,73 +156,60 @@ tbody td{padding:12px 16px;font-size:13px;vertical-align:middle}
 .toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text1);box-shadow:var(--shadow);transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);max-width:340px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.success i{color:var(--green)}.toast.error i{color:var(--red)}
-#img-preview{position:fixed;z-index:9998;pointer-events:none;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);display:none;border:1px solid var(--border2)}
-#img-preview img{width:200px;height:200px;object-fit:cover;display:block}
-.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);background-image:radial-gradient(ellipse at 30% 20%,rgba(108,123,255,0.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(52,211,153,0.05) 0%,transparent 60%)}
+.warning-box{background:var(--amber-bg);border:1px solid rgba(251,191,36,0.25);border-radius:var(--radius);padding:10px 14px;font-size:12px;color:var(--amber);display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.info-box{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--radius);padding:10px 14px;font-size:12px;color:var(--accent2);display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.section-header h2{font-size:18px;font-weight:600;color:var(--text1)}
+.section-header p{font-size:13px;color:var(--text3);margin-top:2px}
+.add-cat-row{display:flex;gap:10px;margin-bottom:16px}
+.video-chip{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:7px 10px;font-size:12px}
+.video-chip i{color:var(--accent2);font-size:18px;flex-shrink:0}
+.empty-state{padding:48px 24px;text-align:center}
+.empty-state i{font-size:40px;color:var(--text3);display:block;margin-bottom:12px}
+.empty-state p{font-size:14px;color:var(--text2)}
+.empty-state small{font-size:12px;color:var(--text3);display:block;margin-top:4px}
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);background-image:radial-gradient(ellipse at 30% 20%,rgba(108,123,255,0.08) 0%,transparent 60%)}
 .login-panel{width:400px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);padding:40px;box-shadow:var(--shadow)}
 .login-logo{margin-bottom:32px}
 .login-logo-mark{width:48px;height:48px;background:var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;margin-bottom:16px}
 .login-logo h1{font-size:22px;font-weight:600;color:var(--text1)}
 .login-logo p{font-size:13px;color:var(--text3);margin-top:5px}
-.login-hint{margin-top:20px;padding-top:16px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);text-align:center;font-family:'JetBrains Mono',monospace}
-.empty-state{padding:48px 24px;text-align:center}
-.empty-state i{font-size:40px;color:var(--text3);display:block;margin-bottom:12px}
-.empty-state p{font-size:14px;color:var(--text2)}
-.empty-state small{font-size:12px;color:var(--text3);display:block;margin-top:4px}
-.divider{height:1px;background:var(--border);margin:18px 0}
-.add-cat-row{display:flex;gap:10px;margin-bottom:16px}
-.warning-box{background:var(--amber-bg);border:1px solid rgba(251,191,36,0.25);border-radius:var(--radius);padding:10px 14px;font-size:12px;color:var(--amber);display:flex;align-items:center;gap:8px;margin-bottom:14px}
-.info-box{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--radius);padding:10px 14px;font-size:12px;color:var(--accent2);display:flex;align-items:center;gap:8px;margin-bottom:14px}
-.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.section-header h2{font-size:18px;font-weight:600;color:var(--text1)}
-.section-header p{font-size:13px;color:var(--text3);margin-top:2px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.spinning{animation:spin 1s linear infinite}
-/* video chips */
-.video-chip{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:7px 10px;font-size:12px}
-.video-chip i{color:var(--accent2);font-size:18px;flex-shrink:0}
-
-/* ═══════════════════════════ CATALOG PRINT ═══════════════════════════ */
-@media print {
-  body * { visibility: hidden !important; }
-  #catalog-print-area, #catalog-print-area * { visibility: visible !important; }
-  #catalog-print-area { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; background: white; }
-  @page { size: A4 landscape; margin: 0; }
-}
-#catalog-print-area { display: none; }
-.catalog-page {
-  width: 297mm; height: 210mm;
-  background: white;
-  position: relative;
-  overflow: hidden;
-  page-break-after: always;
-  font-family: 'Inter', Arial, sans-serif;
-}
-.catalog-page:last-child { page-break-after: avoid; }
+.login-hint{margin-top:20px;padding-top:16px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);text-align:center}
+@keyframes spin{to{transform:rotate(360deg)}}.spinning{animation:spin 1s linear infinite}
+@media print{body *{visibility:hidden!important}#catalog-print-area,#catalog-print-area *{visibility:visible!important}#catalog-print-area{position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;background:white}@page{size:A4 landscape;margin:0}}
+#catalog-print-area{display:none}
+.catalog-page{width:297mm;height:210mm;background:white;position:relative;overflow:hidden;page-break-after:always;font-family:'Inter',Arial,sans-serif}
+.catalog-page:last-child{page-break-after:avoid}
 </style>
 </head>
 <body>
-<div id="img-preview"><img src="" id="preview-img" alt=""></div>
 <div id="toast" class="toast"><i class="ti ti-check" id="toast-icon"></i><span id="toast-msg"></span></div>
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="ti ti-x"></i></button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-info" id="lightbox-info"></div>
+</div>
 <div id="app"></div>
 <div id="catalog-print-area"></div>
-
 <script src="https://accounts.google.com/gsi/client" async></script>
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
 const CLIENT_ID='991854551046-ov5ivlgg2dfjr1a57evmbcc9ja6vu1cm.apps.googleusercontent.com';
 const SCOPES='https://www.googleapis.com/auth/drive.file';
-const DB_FILENAME='pazarlama_veritabani_v2.json';
+const DB_FILENAME='pazarlama_veritabani_v3.json';
 const CAT_COLORS=['#6c7bff','#34d399','#fbbf24','#f87171','#a78bfa','#38bdf8','#fb923c','#4ade80','#e879f9','#67e8f9'];
+const USAGE_OPTIONS=['Instagram Post','Instagram Story','Facebook Banner','Web Sitesi Banner','E-posta Header','Ürün Sayfası Görseli','Kategori Banner','Mobil Banner','Print / Baskı','Diğer'];
 
 let S={
   view:'products',
-  products:[],categories:[],eanPool:[],brands:[],
-  form:freshForm(),
+  products:[],categories:[],eanPool:[],brands:[],materials:[],
+  form:freshForm(),editIndex:null,
   catEdit:null,catFormVal:'',
   loading:true,syncStatus:'idle',
   googleUser:null,accessToken:null,fileId:null,
   brandForm:{name:'',logo:null},
+  materialForm:{name:'',usageWhere:'',usageTags:[],notes:'',images:[]},
+  matFilter:'Tümü',
   catalogSelected:[],
 };
 
@@ -206,48 +217,42 @@ function freshForm(){return{name:'',marketName:'',brandId:'',category:'',desc:''
 function catColor(c){const i=S.categories.indexOf(c);return CAT_COLORS[i%CAT_COLORS.length]||'#6c7bff';}
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function getBrand(id){return S.brands.find(b=>b.id===id);}
+function uid(){return 'id_'+Date.now()+'_'+Math.random().toString(36).slice(2);}
 
 let _toastTimer;
 function showToast(msg,type='success'){
   const t=document.getElementById('toast'),i=document.getElementById('toast-icon'),m=document.getElementById('toast-msg');
   if(!t)return;clearTimeout(_toastTimer);
-  t.className=`toast ${type}`;
-  i.className=type==='success'?'ti ti-check':'ti ti-alert-circle';
-  m.textContent=msg;
-  requestAnimationFrame(()=>t.classList.add('show'));
-  _toastTimer=setTimeout(()=>t.classList.remove('show'),3200);
+  t.className='toast '+type;i.className=type==='success'?'ti ti-check':'ti ti-alert-circle';m.textContent=msg;
+  requestAnimationFrame(()=>t.classList.add('show'));_toastTimer=setTimeout(()=>t.classList.remove('show'),3200);
 }
 
-/* ─── GOOGLE AUTH ─── */
+/* ── GOOGLE AUTH ── */
 let _tokenClient;
 function initGoogleAuth(){
   const wait=setInterval(()=>{
     if(window.google&&window.google.accounts){
       clearInterval(wait);
-      _tokenClient=google.accounts.oauth2.initTokenClient({
-        client_id:CLIENT_ID,scope:SCOPES,
-        callback:(resp)=>{
-          if(resp.error){showToast('Google girişi başarısız','error');return;}
-          S.accessToken=resp.access_token;
-          fetch('https://www.googleapis.com/oauth2/v3/userinfo',{headers:{Authorization:'Bearer '+resp.access_token}})
-            .then(r=>r.json()).then(info=>{S.googleUser=info;loadDB();});
-        }
-      });
+      _tokenClient=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:SCOPES,callback:(resp)=>{
+        if(resp.error){showToast('Google girişi başarısız','error');return;}
+        S.accessToken=resp.access_token;
+        fetch('https://www.googleapis.com/oauth2/v3/userinfo',{headers:{Authorization:'Bearer '+resp.access_token}})
+          .then(r=>r.json()).then(info=>{S.googleUser=info;loadDB();});
+      }});
       S.loading=false;render();
     }
   },100);
 }
 function signIn(){if(_tokenClient)_tokenClient.requestAccessToken({prompt:'consent'});}
-function signOut(){if(S.accessToken)google.accounts.oauth2.revoke(S.accessToken);S.accessToken=null;S.googleUser=null;S.fileId=null;S.products=[];S.categories=[];S.eanPool=[];S.brands=[];S.view='products';render();}
+function signOut(){if(S.accessToken)google.accounts.oauth2.revoke(S.accessToken);Object.assign(S,{accessToken:null,googleUser:null,fileId:null,products:[],categories:[],eanPool:[],brands:[],materials:[],view:'products'});render();}
 
-/* ─── DRIVE ─── */
+/* ── DRIVE ── */
 async function findOrCreateFile(){
-  const res=await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(`name='${DB_FILENAME}' and mimeType='application/json' and trashed=false`)}&fields=files(id,name)`,{headers:{Authorization:'Bearer '+S.accessToken}}).then(r=>r.json());
+  const res=await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(`name='${DB_FILENAME}' and mimeType='application/json' and trashed=false`)}&fields=files(id)`,{headers:{Authorization:'Bearer '+S.accessToken}}).then(r=>r.json());
   if(res.files&&res.files.length>0){S.fileId=res.files[0].id;return;}
-  const initial={products:[],categories:['Elektronik','Giyim','Ev & Yaşam','Spor','Diğer'],eanPool:[],brands:[]};
-  const boundary='bnd_xyz';
-  const body=[`--${boundary}`,'Content-Type: application/json; charset=UTF-8','',JSON.stringify({name:DB_FILENAME,mimeType:'application/json'}),`--${boundary}`,'Content-Type: application/json; charset=UTF-8','',JSON.stringify(initial),`--${boundary}--`].join('\r\n');
-  const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',{method:'POST',headers:{Authorization:'Bearer '+S.accessToken,'Content-Type':`multipart/related; boundary=${boundary}`},body}).then(r=>r.json());
+  const init={products:[],categories:['Elektronik','Giyim','Ev & Yaşam','Spor','Diğer'],eanPool:[],brands:[],materials:[]};
+  const b='bnd_xyz',body=[`--${b}`,'Content-Type: application/json\r\n',JSON.stringify({name:DB_FILENAME,mimeType:'application/json'}),`--${b}`,'Content-Type: application/json\r\n',JSON.stringify(init),`--${b}--`].join('\r\n');
+  const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',{method:'POST',headers:{Authorization:'Bearer '+S.accessToken,'Content-Type':`multipart/related; boundary=${b}`},body}).then(r=>r.json());
   S.fileId=r.id;
 }
 async function loadDB(){
@@ -255,17 +260,17 @@ async function loadDB(){
   try{
     await findOrCreateFile();
     const text=await fetch(`https://www.googleapis.com/drive/v3/files/${S.fileId}?alt=media`,{headers:{Authorization:'Bearer '+S.accessToken}}).then(r=>r.text());
-    const data=JSON.parse(text);
-    S.products=data.products||[];S.categories=data.categories||['Elektronik','Giyim','Ev & Yaşam','Spor','Diğer'];S.eanPool=data.eanPool||[];S.brands=data.brands||[];
+    const d=JSON.parse(text);
+    S.products=d.products||[];S.categories=d.categories||['Elektronik','Giyim','Ev & Yaşam','Spor','Diğer'];
+    S.eanPool=d.eanPool||[];S.brands=d.brands||[];S.materials=d.materials||[];
     S.syncStatus='synced';
   }catch(e){S.syncStatus='error';showToast('Drive yükleme hatası','error');}
   S.loading=false;render();
 }
 async function saveDB(){
-  if(!S.fileId)return;
-  S.syncStatus='syncing';renderSyncBadge();
+  if(!S.fileId)return;S.syncStatus='syncing';renderSyncBadge();
   try{
-    await fetch(`https://www.googleapis.com/upload/drive/v3/files/${S.fileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+S.accessToken,'Content-Type':'application/json'},body:JSON.stringify({products:S.products,categories:S.categories,eanPool:S.eanPool,brands:S.brands})});
+    await fetch(`https://www.googleapis.com/upload/drive/v3/files/${S.fileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+S.accessToken,'Content-Type':'application/json'},body:JSON.stringify({products:S.products,categories:S.categories,eanPool:S.eanPool,brands:S.brands,materials:S.materials})});
     S.syncStatus='synced';
   }catch(e){S.syncStatus='error';showToast('Kayıt hatası','error');}
   renderSyncBadge();
@@ -277,7 +282,7 @@ function renderSyncBadge(){
   else{el.className='drive-badge error';el.innerHTML='<i class="ti ti-alert-circle"></i> Bağlantı hatası';}
 }
 
-/* ─── RENDER ─── */
+/* ── RENDER ── */
 function render(){
   const app=document.getElementById('app');if(!app)return;
   if(S.loading){app.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;height:100vh;gap:14px;color:var(--text2)"><i class="ti ti-refresh spinning" style="font-size:22px;color:var(--accent)"></i><span>${S.accessToken?'Google Drive\'dan yükleniyor...':'Başlatılıyor...'}</span></div>`;return;}
@@ -291,170 +296,212 @@ function renderLogin(){
     <div class="login-logo"><div class="login-logo-mark"><i class="ti ti-building-store"></i></div><h1>Pazarlama Veritabanı</h1><p>Ürün bilgileri, görseller ve belgeler için merkezi sistem</p></div>
     <p style="font-size:13px;color:var(--text3);margin-bottom:20px;text-align:center">Devam etmek için Google hesabınızla giriş yapın.</p>
     <button class="btn btn-google" style="width:100%;justify-content:center" onclick="signIn()">
-      <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:2px"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:4px"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
       Google ile Giriş Yap
     </button>
-    <div class="login-hint">Veriler Google Drive hesabınızda saklanır ve yetkili herkes erişebilir.</div>
+    <div class="login-hint">Veriler Google Drive hesabınızda saklanır.</div>
   </div></div>`;
 }
 
 function renderSidebar(){
-  const nav=[
+  const nav1=[
     {id:'products',icon:'ti-package',label:'Ürünler',badge:S.products.length},
     {id:'add',icon:'ti-circle-plus',label:'Yeni Ürün',badge:''},
+  ];
+  const nav2=[
+    {id:'materials',icon:'ti-photo-star',label:'Pazarlama Malz.',badge:S.materials.length},
     {id:'brands',icon:'ti-trademark',label:'Markalar',badge:S.brands.length},
     {id:'catalog',icon:'ti-file-download',label:'Katalog',badge:''},
+  ];
+  const nav3=[
     {id:'categories',icon:'ti-tag',label:'Kategoriler',badge:S.categories.length},
     {id:'ean',icon:'ti-barcode',label:'EAN Havuzu',badge:S.eanPool.filter(e=>!e.usedBy).length+'/'+S.eanPool.length},
   ];
   const u=S.googleUser;
   const av=u?.picture?`<img src="${u.picture}" alt="">`:`<span>${(u?.name||'?')[0].toUpperCase()}</span>`;
+  const navHtml=(items)=>items.map(n=>`<button class="nav-item ${S.view===n.id?'active':''}" onclick="setView('${n.id}')"><i class="ti ${n.icon}"></i><span>${n.label}</span>${n.badge!==''?`<span class="nav-badge">${n.badge}</span>`:''}</button>`).join('');
   return `<aside class="sidebar">
     <div class="sidebar-logo"><div class="sidebar-logo-mark"><i class="ti ti-building-store"></i></div><h1>Pazarlama<br>Veritabanı</h1><span>Ürün Yönetimi</span></div>
-    <nav class="sidebar-nav">${nav.map(n=>`<button class="nav-item ${S.view===n.id?'active':''}" onclick="setView('${n.id}')"><i class="ti ${n.icon}"></i><span>${n.label}</span>${n.badge!==''?`<span class="nav-badge">${n.badge}</span>`:''}</button>`).join('')}</nav>
-    <div class="sidebar-footer"><div class="user-chip"><div class="user-avatar">${av}</div><div class="user-info"><div class="uname">${esc(u?.name||u?.email||'Kullanıcı')}</div><div class="urole">${esc((u?.email||'').split('@')[0])}</div></div><button class="btn-logout" onclick="signOut()" title="Çıkış yap"><i class="ti ti-logout" style="font-size:16px"></i></button></div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Ürünler</div>${navHtml(nav1)}
+      <div class="nav-section">Pazarlama</div>${navHtml(nav2)}
+      <div class="nav-section">Ayarlar</div>${navHtml(nav3)}
+    </nav>
+    <div class="sidebar-footer"><div class="user-chip"><div class="user-avatar">${av}</div><div class="user-info"><div class="uname">${esc(u?.name||u?.email||'Kullanıcı')}</div><div class="urole">${esc((u?.email||'').split('@')[0])}</div></div><button class="btn-logout" onclick="signOut()"><i class="ti ti-logout" style="font-size:16px"></i></button></div></div>
   </aside>`;
 }
 
 function renderTopbar(){
-  const titles={products:'Ürün Listesi',add:'Yeni Ürün Ekle',brands:'Markalar',catalog:'Katalog İndir',categories:'Kategoriler',ean:'EAN Kodu Havuzu'};
+  const titles={products:'Ürün Listesi',add:S.editIndex!==null?'Ürün Düzenle':'Yeni Ürün Ekle',brands:'Markalar',catalog:'Katalog İndir',categories:'Kategoriler',ean:'EAN Kodu Havuzu',materials:'Pazarlama Malzemeleri'};
   const syncIcon=S.syncStatus==='syncing'?'<i class="ti ti-refresh spinning"></i> Kaydediliyor...':'<i class="ti ti-brand-google-drive"></i> Drive\'a bağlı';
   return `<div class="topbar"><span class="page-title">${titles[S.view]||''}</span><div class="topbar-right"><span class="drive-badge ${S.syncStatus==='syncing'?'syncing':''}" id="drive-badge">${syncIcon}</span><button class="btn btn-sm" onclick="loadDB()"><i class="ti ti-refresh"></i> Yenile</button></div></div>`;
 }
 
 function renderView(){
-  if(S.view==='products') return renderProducts();
-  if(S.view==='add')      return renderAdd();
-  if(S.view==='brands')   return renderBrands();
-  if(S.view==='catalog')  return renderCatalog();
+  if(S.view==='products')   return renderProducts();
+  if(S.view==='add')        return renderAdd();
+  if(S.view==='brands')     return renderBrands();
+  if(S.view==='catalog')    return renderCatalog();
   if(S.view==='categories') return renderCategories();
-  if(S.view==='ean')      return renderEAN();
+  if(S.view==='ean')        return renderEAN();
+  if(S.view==='materials')  return renderMaterials();
   return '';
 }
 
-/* ─── PRODUCTS LIST ─── */
+/* ── PRODUCTS ── */
 function renderProducts(){
   return `
   <div class="stats-grid">
     <div class="stat-card blue"><div class="stat-icon"><i class="ti ti-package"></i></div><div class="stat-value">${S.products.length}</div><div class="stat-label">Toplam Ürün</div></div>
     <div class="stat-card green"><div class="stat-icon"><i class="ti ti-barcode"></i></div><div class="stat-value">${S.eanPool.filter(e=>!e.usedBy).length}</div><div class="stat-label">Kullanılabilir EAN</div></div>
     <div class="stat-card amber"><div class="stat-icon"><i class="ti ti-trademark"></i></div><div class="stat-value">${S.brands.length}</div><div class="stat-label">Marka</div></div>
-    <div class="stat-card purple"><div class="stat-icon"><i class="ti ti-certificate"></i></div><div class="stat-value">${S.products.filter(p=>p.ceDoc).length}</div><div class="stat-label">CE Belgeli</div></div>
+    <div class="stat-card purple"><div class="stat-icon"><i class="ti ti-photo-star"></i></div><div class="stat-value">${S.materials.length}</div><div class="stat-label">Pazarlama Malz.</div></div>
   </div>
   <div class="table-card">
     <div class="table-header"><h2>Kayıtlı Ürünler</h2><button class="btn btn-primary btn-sm" onclick="setView('add')"><i class="ti ti-plus"></i> Ürün Ekle</button></div>
     ${S.products.length===0?`<div class="empty-state"><i class="ti ti-package-off"></i><p>Henüz ürün eklenmedi</p><small>Yeni Ürün Ekle sekmesinden başlayabilirsiniz.</small></div>`:`
-    <table><thead><tr>
-      <th style="width:56px">Görsel</th><th>Ürün Adı</th><th>Pazaryeri Adı</th><th>Marka</th><th>Kategori</th><th>EAN</th><th>Medya</th><th style="width:48px"></th>
-    </tr></thead><tbody>
+    <table><thead><tr><th style="width:56px">Görsel</th><th>Ürün Adı</th><th>Pazaryeri Adı</th><th>Marka</th><th>Kategori</th><th>EAN</th><th>Medya</th><th style="width:80px"></th></tr></thead><tbody>
     ${S.products.map((p,i)=>{
       const img=p.images&&p.images[0];const cc=catColor(p.category);const br=getBrand(p.brandId);
       return `<tr>
-        <td>${img?`<img class="thumb" src="${img}" onmouseover="showPreview('${img}')" onmouseout="hidePreview()" alt="">`:`<div class="thumb-placeholder"><i class="ti ti-photo-off"></i></div>`}</td>
+        <td>${img?`<img class="thumb" src="${img}" onmouseover="showLightboxHover(event,'${img}')" onmouseout="closeLightboxHover()" alt="">`:`<div class="thumb-placeholder"><i class="ti ti-photo-off"></i></div>`}</td>
         <td><strong style="color:var(--text1);font-weight:500">${esc(p.name)}</strong></td>
         <td style="color:var(--text2)">${esc(p.marketName)}</td>
-        <td>${br?`<div style="display:flex;align-items:center;gap:6px">${br.logo?`<img src="${br.logo}" style="width:24px;height:18px;object-fit:contain;background:white;border-radius:3px;padding:2px">`:'<i class="ti ti-trademark" style="color:var(--text3)"></i>'}<span style="font-size:12px">${esc(br.name)}</span></div>`:`<span style="color:var(--text3);font-size:12px">—</span>`}</td>
+        <td>${br?`<div style="display:flex;align-items:center;gap:6px">${br.logo?`<img src="${br.logo}" style="width:20px;height:16px;object-fit:contain;background:white;border-radius:2px;padding:1px">`:'<i class="ti ti-trademark" style="color:var(--text3);font-size:13px"></i>'}<span style="font-size:12px">${esc(br.name)}</span></div>`:`<span style="color:var(--text3);font-size:12px">—</span>`}</td>
         <td><span class="cat-pill" style="background:${cc}18;color:${cc};border:1px solid ${cc}33"><span style="width:6px;height:6px;border-radius:50%;background:${cc};display:inline-block"></span>${esc(p.category)}</span></td>
         <td><span class="ean-mono">${esc(p.ean||'—')}</span></td>
-        <td style="font-size:12px;color:var(--text3)"><span style="color:var(--text2)">${(p.images||[]).length}</span> 🖼 <span style="color:var(--text2)">${(p.videos||[]).length}</span> 🎬${p.ceDoc?' <span style="color:var(--green)">CE</span>':''}</td>
-        <td><button class="btn btn-icon btn-danger btn-sm" onclick="deleteProduct(${i})"><i class="ti ti-trash"></i></button></td>
+        <td style="font-size:12px;color:var(--text3)"><span style="color:var(--text2)">${(p.images||[]).length}</span>🖼 <span style="color:var(--text2)">${(p.videos||[]).length}</span>🎬${p.ceDoc?' <span style="color:var(--green)">CE</span>':''}</td>
+        <td><div style="display:flex;gap:5px">
+          <button class="btn btn-icon btn-amber btn-sm" onclick="editProduct(${i})" title="Düzenle"><i class="ti ti-pencil"></i></button>
+          <button class="btn btn-icon btn-danger btn-sm" onclick="deleteProduct(${i})" title="Sil"><i class="ti ti-trash"></i></button>
+        </div></td>
       </tr>`;
     }).join('')}
     </tbody></table>`}
   </div>`;
 }
 
-/* ─── ADD PRODUCT ─── */
+/* ── ADD / EDIT PRODUCT ── */
 function renderAdd(){
-  const f=S.form;
+  const f=S.form;const isEdit=S.editIndex!==null;
   const avail=S.eanPool.filter(e=>!e.usedBy);
+  const eanDisplay=isEdit?(S.products[S.editIndex]?.ean||'Atanmamış'):(avail.length?avail[0].code:'Kullanılabilir EAN yok');
   return `
-  ${avail.length===0?`<div class="warning-box"><i class="ti ti-alert-triangle"></i> EAN havuzunda kullanılabilir kod kalmadı.</div>`:''}
+  ${!isEdit&&avail.length===0?`<div class="warning-box"><i class="ti ti-alert-triangle"></i> EAN havuzunda kullanılabilir kod kalmadı.</div>`:''}
+  ${isEdit?`<div class="info-box"><i class="ti ti-pencil"></i> <strong>${esc(S.products[S.editIndex]?.name)}</strong> ürününü düzenliyorsunuz.</div>`:''}
   <div class="form-card">
     <h3><i class="ti ti-info-circle"></i> Temel Bilgiler</h3>
     <div class="form-row">
       <div class="form-group"><label>Ürün Adı <span class="req">*</span></label><input type="text" id="f_name" value="${esc(f.name)}" placeholder="Dahili katalog adı">${f.errors.name?`<span class="field-error"><i class="ti ti-alert-circle"></i>${f.errors.name}</span>`:''}</div>
-      <div class="form-group"><label>Pazaryeri Adı <span class="req">*</span></label><input type="text" id="f_mname" value="${esc(f.marketName)}" placeholder="Trendyol, Amazon vb. için ad">${f.errors.marketName?`<span class="field-error"><i class="ti ti-alert-circle"></i>${f.errors.marketName}</span>`:''}</div>
+      <div class="form-group"><label>Pazaryeri Adı <span class="req">*</span></label><input type="text" id="f_mname" value="${esc(f.marketName)}" placeholder="Trendyol, Amazon vb.">${f.errors.marketName?`<span class="field-error"><i class="ti ti-alert-circle"></i>${f.errors.marketName}</span>`:''}</div>
     </div>
     <div class="form-row">
-      <div class="form-group">
-        <label>Marka</label>
-        <select id="f_brand">
-          <option value="">— Marka seçin —</option>
-          ${S.brands.map(b=>`<option value="${b.id}" ${f.brandId===b.id?'selected':''}>${esc(b.name)}</option>`).join('')}
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Kategori <span class="req">*</span></label>
-        <select id="f_cat">
-          <option value="">— Kategori seçin —</option>
-          ${S.categories.map(c=>`<option value="${esc(c)}" ${f.category===c?'selected':''}>${esc(c)}</option>`).join('')}
-        </select>
-        ${f.errors.category?`<span class="field-error"><i class="ti ti-alert-circle"></i>${f.errors.category}</span>`:''}
-      </div>
+      <div class="form-group"><label>Marka</label><select id="f_brand"><option value="">— Marka seçin —</option>${S.brands.map(b=>`<option value="${b.id}" ${f.brandId===b.id?'selected':''}>${esc(b.name)}</option>`).join('')}</select></div>
+      <div class="form-group"><label>Kategori <span class="req">*</span></label><select id="f_cat"><option value="">— Kategori seçin —</option>${S.categories.map(c=>`<option value="${esc(c)}" ${f.category===c?'selected':''}>${esc(c)}</option>`).join('')}</select>${f.errors.category?`<span class="field-error"><i class="ti ti-alert-circle"></i>${f.errors.category}</span>`:''}</div>
     </div>
-    <div class="form-group"><label>Otomatik atanacak EAN (otomatik)</label><input type="text" value="${avail.length?avail[0].code:'Kullanılabilir EAN yok'}" disabled style="font-family:'JetBrains Mono',monospace;font-size:12px"></div>
+    <div class="form-group"><label>EAN Kodu ${isEdit?'(mevcut)':'(otomatik atanacak)'}</label><input type="text" value="${eanDisplay}" disabled style="font-family:'JetBrains Mono',monospace;font-size:12px"></div>
     <div class="form-group"><label>Genel Açıklama</label><textarea id="f_desc" placeholder="Ürün genel açıklaması...">${esc(f.desc)}</textarea></div>
   </div>
-
   <div class="form-card">
     <h3><i class="ti ti-list-details"></i> Teknik Özellikler ve Faydalı Bilgiler</h3>
-    <div class="form-group">
-      <label>Teknik Özellikler</label>
-      <textarea id="f_tech" placeholder="Boyutlar, ağırlık, malzeme, güç tüketimi, sertifikalar vb. teknik detayları yazın..." style="min-height:120px">${esc(f.techSpecs)}</textarea>
-    </div>
-    <div class="form-group">
-      <label>Rakiplerden Ayıran Faydalı Bilgiler</label>
-      <textarea id="f_useful" placeholder="Ürünün rekabet avantajları, öne çıkan özellikleri, müşteri faydaları..." style="min-height:120px">${esc(f.usefulInfo)}</textarea>
-    </div>
+    <div class="form-group"><label>Teknik Özellikler</label><textarea id="f_tech" placeholder="Her satıra bir özellik yazın..." style="min-height:120px">${esc(f.techSpecs)}</textarea></div>
+    <div class="form-group"><label>Rakiplerden Ayıran Faydalı Bilgiler</label><textarea id="f_useful" placeholder="Her satıra bir madde yazın..." style="min-height:120px">${esc(f.usefulInfo)}</textarea></div>
   </div>
-
   <div class="form-card">
     <h3><i class="ti ti-photo"></i> Ürün Görselleri <span style="font-size:12px;font-weight:400;color:var(--text3)">En az 2 görsel zorunlu</span></h3>
-    <div class="upload-zone" onclick="document.getElementById('img_inp').click()">
-      <i class="ti ti-cloud-upload"></i>
-      <p><strong>Görsel yüklemek için tıklayın</strong> veya sürükleyin</p>
-      <p style="margin-top:4px">JPG, PNG, WEBP · Birden fazla seçilebilir</p>
-    </div>
+    <div class="upload-zone" onclick="document.getElementById('img_inp').click()"><i class="ti ti-cloud-upload"></i><p><strong>Görsel yüklemek için tıklayın</strong></p><p style="margin-top:4px">JPG, PNG, WEBP · Birden fazla seçilebilir</p></div>
     <input type="file" id="img_inp" accept="image/*" multiple style="display:none" onchange="addImages(this)">
     ${f.errors.images?`<span class="field-error" style="margin-top:6px"><i class="ti ti-alert-circle"></i>${f.errors.images}</span>`:''}
-    <div class="file-chips">${f.images.map((img,i)=>`<div class="file-chip"><img src="${img.src}" alt=""><span class="chip-name">${esc(img.name)}</span><button class="chip-remove" onclick="removeImage(${i})">×</button></div>`).join('')}</div>
+    <div class="file-chips">${f.images.map((img,i)=>`<div class="file-chip"><img src="${img.src}" alt="" onclick="openLightbox('${img.src}','${esc(img.name)}')"><span class="chip-name">${esc(img.name)}</span><button class="chip-remove" onclick="removeImage(${i})">×</button></div>`).join('')}</div>
   </div>
-
   <div class="form-card">
-    <h3><i class="ti ti-video"></i> Ürün Videoları <span style="font-size:12px;font-weight:400;color:var(--text3)">İsteğe bağlı · MP4, MOV veya URL</span></h3>
+    <h3><i class="ti ti-video"></i> Ürün Videoları <span style="font-size:12px;font-weight:400;color:var(--text3)">İsteğe bağlı</span></h3>
     <div style="display:flex;gap:10px;margin-bottom:10px">
-      <input type="text" id="vid_url" placeholder="Video URL (YouTube, Vimeo, direkt link...)" style="flex:1;padding:9px 12px;font-size:13px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text1);font-family:inherit">
+      <input type="text" id="vid_url" placeholder="Video URL (YouTube, Vimeo...)" style="flex:1;padding:9px 12px;font-size:13px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text1);font-family:inherit">
       <button class="btn" onclick="addVideoUrl()"><i class="ti ti-plus"></i> URL Ekle</button>
     </div>
-    <div class="upload-zone" onclick="document.getElementById('vid_inp').click()">
-      <i class="ti ti-movie"></i>
-      <p><strong>Video dosyası yüklemek için tıklayın</strong></p>
-      <p style="margin-top:4px">MP4, MOV, AVI, WEBM</p>
-    </div>
+    <div class="upload-zone" onclick="document.getElementById('vid_inp').click()"><i class="ti ti-movie"></i><p><strong>Video dosyası yüklemek için tıklayın</strong></p><p style="margin-top:4px">MP4, MOV, AVI, WEBM</p></div>
     <input type="file" id="vid_inp" accept="video/*" multiple style="display:none" onchange="addVideos(this)">
     <div class="file-chips" style="margin-top:10px">${(f.videos||[]).map((v,i)=>`<div class="video-chip"><i class="ti ti-video"></i><span class="chip-name" style="max-width:200px">${esc(v.name||v.url)}</span><button class="chip-remove" onclick="removeVideo(${i})">×</button></div>`).join('')}</div>
   </div>
-
   <div class="form-card">
     <h3><i class="ti ti-certificate"></i> CE Belgesi <span style="font-size:12px;font-weight:400;color:var(--text3)">Zorunlu · PDF veya görsel</span></h3>
-    <div class="upload-zone" onclick="document.getElementById('ce_inp').click()">
-      <i class="ti ti-file-certificate"></i>
-      <p><strong>CE belgesi yüklemek için tıklayın</strong></p>
-      <p style="margin-top:4px">PDF, JPG, PNG</p>
-    </div>
+    <div class="upload-zone" onclick="document.getElementById('ce_inp').click()"><i class="ti ti-file-certificate"></i><p><strong>CE belgesi yüklemek için tıklayın</strong></p><p style="margin-top:4px">PDF, JPG, PNG</p></div>
     <input type="file" id="ce_inp" accept=".pdf,image/*" style="display:none" onchange="addCE(this)">
     ${f.errors.ceDoc?`<span class="field-error" style="margin-top:6px"><i class="ti ti-alert-circle"></i>${f.errors.ceDoc}</span>`:''}
     ${f.ceDoc?`<div class="file-chips" style="margin-top:10px"><div class="file-chip"><i class="ti ti-file-certificate" style="font-size:20px;color:var(--accent2)"></i><span class="chip-name">${esc(f.ceDoc)}</span><button class="chip-remove" onclick="removeCE()">×</button></div></div>`:''}
   </div>
-
   <div class="form-actions">
-    <button class="btn" onclick="resetForm()"><i class="ti ti-x"></i> Temizle</button>
-    <button class="btn btn-primary" onclick="submitProduct()" ${avail.length===0?'disabled':''}><i class="ti ti-check"></i> Ürünü Kaydet</button>
+    <button class="btn" onclick="cancelEdit()"><i class="ti ti-x"></i> İptal</button>
+    <button class="btn btn-primary" onclick="submitProduct()" ${!isEdit&&avail.length===0?'disabled':''}><i class="ti ti-check"></i> ${isEdit?'Değişiklikleri Kaydet':'Ürünü Kaydet'}</button>
   </div>`;
 }
 
-/* ─── BRANDS ─── */
+/* ── MATERIALS ── */
+function renderMaterials(){
+  const filtered=S.matFilter==='Tümü'?S.materials:S.materials.filter(m=>m.usageTags&&m.usageTags.includes(S.matFilter));
+  const allTags=[...new Set(S.materials.flatMap(m=>m.usageTags||[]))];
+  return `
+  <div class="section-header">
+    <div><h2>Pazarlama Malzemeleri</h2><p>Banner, görsel ve diğer pazarlama içeriklerini yönetin</p></div>
+    <button class="btn btn-primary" onclick="openMaterialModal()"><i class="ti ti-plus"></i> Malzeme Ekle</button>
+  </div>
+  <div class="usage-filter-bar">
+    <button class="usage-filter ${S.matFilter==='Tümü'?'active':''}" onclick="S.matFilter='Tümü';render()">Tümü <span style="opacity:.6">(${S.materials.length})</span></button>
+    ${allTags.map(t=>`<button class="usage-filter ${S.matFilter===t?'active':''}" onclick="S.matFilter='${t}';render()">${t} <span style="opacity:.6">(${S.materials.filter(m=>m.usageTags&&m.usageTags.includes(t)).length})</span></button>`).join('')}
+  </div>
+  ${filtered.length===0?`<div class="empty-state"><i class="ti ti-photo-off"></i><p>Henüz malzeme eklenmedi</p><small>Sağ üstten malzeme ekleyebilirsiniz.</small></div>`:
+  `<div class="material-grid">${filtered.map((m,i)=>{
+    const si=S.materials.indexOf(m);
+    const img=m.images&&m.images[0];
+    return `<div class="material-card">
+      <div class="material-img-wrap" onclick="openLightbox('${img?img.src:''}','${esc(m.name)}',${img?img.w+','+img.h:0+','+0})">
+        ${img?`<img src="${img.src}" alt="${esc(m.name)}"><span class="material-res-badge">${img.w||'?'}×${img.h||'?'}</span>`:`<i class="ti ti-photo" style="font-size:40px;color:var(--text3)"></i>`}
+        <div class="material-img-overlay"><i class="ti ti-zoom-in" style="font-size:28px;color:white"></i></div>
+      </div>
+      <div class="material-body">
+        <div class="material-name">${esc(m.name)}</div>
+        <div class="material-usage">${esc(m.usageWhere||'')}</div>
+        ${m.usageTags&&m.usageTags.length?`<div class="material-tags">${m.usageTags.map(t=>`<span class="material-tag">${esc(t)}</span>`).join('')}</div>`:''}
+        ${m.notes?`<div style="font-size:11px;color:var(--text3);margin-bottom:8px;line-height:1.4">${esc(m.notes)}</div>`:''}
+        <div class="material-actions">
+          ${img?`<button class="btn btn-sm btn-success" onclick="downloadMaterial(${si})"><i class="ti ti-download"></i> İndir</button>`:''}
+          ${m.images&&m.images.length>1?`<button class="btn btn-sm" onclick="viewAllImages(${si})"><i class="ti ti-photos"></i> ${m.images.length}</button>`:''}
+          <button class="btn btn-sm btn-amber" onclick="editMaterial(${si})"><i class="ti ti-pencil"></i></button>
+          <button class="btn btn-sm btn-danger" onclick="deleteMaterial(${si})"><i class="ti ti-trash"></i></button>
+        </div>
+      </div>
+    </div>`;
+  }).join('')}</div>`}
+  <!-- MATERIAL MODAL -->
+  <div id="mat-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9980;align-items:center;justify-content:center;overflow-y:auto;padding:20px">
+    <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-xl);width:600px;max-width:100%;padding:28px;position:relative;margin:auto">
+      <button onclick="closeMaterialModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;color:var(--text2);cursor:pointer;font-size:20px"><i class="ti ti-x"></i></button>
+      <h2 style="font-size:16px;font-weight:600;margin-bottom:20px;color:var(--text1)" id="mat-modal-title">Malzeme Ekle</h2>
+      <div class="form-group"><label>Malzeme Adı <span class="req">*</span></label><input type="text" id="mat_name" placeholder="Örn: Yaz Kampanyası Banner"></div>
+      <div class="form-group"><label>Nerede Kullanılacak <span class="req">*</span></label><input type="text" id="mat_where" placeholder="Örn: Ana sayfa hero banner, 1920×1080px"></div>
+      <div class="form-group">
+        <label>Kullanım Yeri Etiketleri</label>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:2px" id="mat_tag_wrap">
+          ${USAGE_OPTIONS.map(t=>`<button type="button" class="usage-filter" id="mattag_${t.replace(/[^a-z0-9]/gi,'_')}" onclick="toggleMatTag('${t}')">${t}</button>`).join('')}
+        </div>
+      </div>
+      <div class="form-group"><label>Notlar</label><textarea id="mat_notes" placeholder="Ek bilgi, boyut gereksinimleri vb." style="min-height:60px"></textarea></div>
+      <div style="margin-bottom:14px">
+        <label style="font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bottom:8px">Görseller <span class="req">*</span></label>
+        <div class="upload-zone" onclick="document.getElementById('mat_img_inp').click()"><i class="ti ti-cloud-upload"></i><p><strong>Görsel yüklemek için tıklayın</strong></p><p style="margin-top:4px">PNG, JPG, WEBP, GIF, SVG</p></div>
+        <input type="file" id="mat_img_inp" accept="image/*" multiple style="display:none" onchange="addMatImages(this)">
+        <div class="file-chips" id="mat_img_chips"></div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button class="btn" onclick="closeMaterialModal()">İptal</button>
+        <button class="btn btn-primary" onclick="saveMaterial()"><i class="ti ti-check"></i> Kaydet</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ── BRANDS ── */
 function renderBrands(){
   return `
   <div class="section-header"><div><h2>Markalar</h2><p>Marka ekleyin ve logo yükleyin</p></div></div>
@@ -475,119 +522,100 @@ function renderBrands(){
   </div>
   <div class="brand-grid">
     ${S.brands.length===0?`<div style="grid-column:1/-1"><div class="empty-state"><i class="ti ti-trademark"></i><p>Henüz marka eklenmedi</p></div></div>`:''}
-    ${S.brands.map((b,i)=>`
-      <div class="brand-card">
-        ${b.logo?`<img class="brand-logo-preview" src="${b.logo}" alt="${esc(b.name)}">`:`<div class="brand-logo-placeholder"><i class="ti ti-trademark"></i></div>`}
-        <span class="brand-name">${esc(b.name)}</span>
-        <span style="font-size:11px;color:var(--text3)">${S.products.filter(p=>p.brandId===b.id).length} ürün</span>
-        <button class="btn btn-sm btn-danger brand-delete" onclick="deleteBrand(${i})"><i class="ti ti-trash"></i></button>
-      </div>`).join('')}
+    ${S.brands.map((b,i)=>`<div class="brand-card">
+      ${b.logo?`<img class="brand-logo-preview" src="${b.logo}" alt="${esc(b.name)}">`:`<div class="brand-logo-placeholder"><i class="ti ti-trademark"></i></div>`}
+      <span class="brand-name">${esc(b.name)}</span>
+      <span style="font-size:11px;color:var(--text3)">${S.products.filter(p=>p.brandId===b.id).length} ürün</span>
+      <button class="btn btn-sm btn-danger brand-delete" onclick="deleteBrand(${i})"><i class="ti ti-trash"></i></button>
+    </div>`).join('')}
   </div>`;
 }
 
-/* ─── CATALOG ─── */
+/* ── CATALOG ── */
 function renderCatalog(){
   return `
-  <div class="section-header"><div><h2>Katalog İndir</h2><p>Ürün seçin ve A4 katalog sayfaları oluşturun</p></div>
-    <button class="btn btn-success" onclick="generateCatalog()" ${S.catalogSelected.length===0?'disabled':''}><i class="ti ti-file-download"></i> ${S.catalogSelected.length} Ürün için Katalog Oluştur</button>
+  <div class="section-header">
+    <div><h2>Katalog İndir</h2><p>Ürün seçin ve A4 yatay katalog sayfaları oluşturun</p></div>
+    <button class="btn btn-success" onclick="generateCatalog()" ${S.catalogSelected.length===0?'disabled':''}><i class="ti ti-file-download"></i> ${S.catalogSelected.length} Ürün için Katalog</button>
   </div>
-  <div class="form-card" style="margin-bottom:16px">
+  <div class="form-card">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
       <h3 style="margin:0"><i class="ti ti-check"></i> Ürün Seçimi</h3>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-sm" onclick="catalogSelectAll()"><i class="ti ti-select-all"></i> Tümünü Seç</button>
-        <button class="btn btn-sm" onclick="S.catalogSelected=[];render()"><i class="ti ti-x"></i> Temizle</button>
-      </div>
+      <div style="display:flex;gap:8px"><button class="btn btn-sm" onclick="catalogSelectAll()"><i class="ti ti-select-all"></i> Tümünü Seç</button><button class="btn btn-sm" onclick="S.catalogSelected=[];render()"><i class="ti ti-x"></i> Temizle</button></div>
     </div>
-    ${S.products.length===0?`<div class="empty-state" style="padding:24px"><i class="ti ti-package-off"></i><p>Katalog oluşturmak için önce ürün ekleyin</p></div>`:''}
-    <div style="display:flex;flex-direction:column;gap:6px">
-      ${S.products.map((p,i)=>{
-        const sel=S.catalogSelected.includes(i);
-        const br=getBrand(p.brandId);
-        const cc=catColor(p.category);
-        const img=p.images&&p.images[0];
-        return `<div class="catalog-sel-row ${sel?'selected':''}" onclick="toggleCatalogSelect(${i})">
-          <input type="checkbox" ${sel?'checked':''} onclick="event.stopPropagation();toggleCatalogSelect(${i})">
-          ${img?`<img src="${img}" style="width:36px;height:36px;object-fit:cover;border-radius:6px;border:1px solid var(--border2)">`:`<div style="width:36px;height:36px;border-radius:6px;background:var(--bg4);display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:14px"><i class="ti ti-photo-off"></i></div>`}
-          <div style="flex:1">
-            <div style="font-weight:500;font-size:13px">${esc(p.name)}</div>
-            <div style="font-size:11px;color:var(--text3)">${br?esc(br.name)+' · ':''}<span style="color:${cc}">${esc(p.category)}</span> · ${(p.images||[]).length} görsel</div>
-          </div>
-          <span class="ean-mono">${esc(p.ean||'')}</span>
-        </div>`;
-      }).join('')}
-    </div>
+    ${S.products.length===0?`<div class="empty-state" style="padding:24px"><i class="ti ti-package-off"></i><p>Katalog için önce ürün ekleyin</p></div>`:
+    `<div style="display:flex;flex-direction:column;gap:6px">${S.products.map((p,i)=>{
+      const sel=S.catalogSelected.includes(i);const br=getBrand(p.brandId);const cc=catColor(p.category);const img=p.images&&p.images[0];
+      return `<div class="catalog-sel-row ${sel?'selected':''}" onclick="toggleCatalogSelect(${i})">
+        <input type="checkbox" ${sel?'checked':''} onclick="event.stopPropagation();toggleCatalogSelect(${i})">
+        ${img?`<img src="${img}" style="width:36px;height:36px;object-fit:cover;border-radius:6px;border:1px solid var(--border2)">`:`<div style="width:36px;height:36px;border-radius:6px;background:var(--bg4);display:flex;align-items:center;justify-content:center;color:var(--text3)"><i class="ti ti-photo-off"></i></div>`}
+        <div style="flex:1"><div style="font-weight:500;font-size:13px">${esc(p.name)}</div><div style="font-size:11px;color:var(--text3)">${br?esc(br.name)+' · ':''}<span style="color:${cc}">${esc(p.category)}</span></div></div>
+        <span class="ean-mono">${esc(p.ean||'')}</span>
+      </div>`;
+    }).join('')}</div>`}
   </div>`;
 }
 
-/* ─── CATEGORIES ─── */
+/* ── CATEGORIES ── */
 function renderCategories(){
   return `
   <div class="section-header"><div><h2>Kategoriler</h2><p>Ekleyin, düzenleyin veya silin</p></div></div>
-  <div class="form-card" style="margin-bottom:16px">
-    <h3><i class="ti ti-plus"></i> Yeni Kategori</h3>
-    <div class="add-cat-row">
-      <input type="text" id="new_cat" value="${esc(S.catFormVal)}" placeholder="Kategori adı girin..." style="flex:1;padding:9px 12px;font-size:13px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text1);font-family:inherit">
-      <button class="btn btn-primary" onclick="addCategory()"><i class="ti ti-plus"></i> Ekle</button>
-    </div>
+  <div class="form-card" style="margin-bottom:16px"><h3><i class="ti ti-plus"></i> Yeni Kategori</h3>
+    <div class="add-cat-row"><input type="text" id="new_cat" value="${esc(S.catFormVal)}" placeholder="Kategori adı girin..." style="flex:1;padding:9px 12px;font-size:13px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text1);font-family:inherit">
+    <button class="btn btn-primary" onclick="addCategory()"><i class="ti ti-plus"></i> Ekle</button></div>
   </div>
   <div class="table-card"><div class="table-header"><h2>Mevcut Kategoriler</h2><span style="font-size:12px;color:var(--text3)">${S.categories.length} kategori</span></div>
-    <div style="padding:12px 16px"><div class="cat-list">
-      ${S.categories.map((c,i)=>{
-        const cc=CAT_COLORS[i%CAT_COLORS.length];const count=S.products.filter(p=>p.category===c).length;const isEd=S.catEdit&&S.catEdit.index===i;
-        return `<div class="cat-row">
-          <span class="cat-dot" style="background:${cc}"></span>
-          ${isEd?`<input class="cat-edit-input" id="cat_edit_inp" type="text" value="${esc(S.catEdit.value)}" onkeydown="catEditKey(event,${i})">`:`<span class="cat-name-span">${esc(c)}</span>`}
-          <span class="cat-count">${count} ürün</span>
-          <div style="display:flex;gap:6px">
-            ${isEd?`<button class="btn btn-sm btn-primary" onclick="saveCatEdit(${i})"><i class="ti ti-check"></i> Kaydet</button><button class="btn btn-sm" onclick="cancelCatEdit()"><i class="ti ti-x"></i></button>`
-              :`<button class="btn btn-sm btn-icon" onclick="startCatEdit(${i})"><i class="ti ti-pencil"></i></button>${count===0?`<button class="btn btn-sm btn-icon btn-danger" onclick="deleteCategory(${i})"><i class="ti ti-trash"></i></button>`:`<button class="btn btn-sm btn-icon" disabled style="opacity:.25;cursor:not-allowed"><i class="ti ti-trash"></i></button>`}`}
-          </div>
-        </div>`;
-      }).join('')}
-    </div></div>
+    <div style="padding:12px 16px"><div class="cat-list">${S.categories.map((c,i)=>{
+      const cc=CAT_COLORS[i%CAT_COLORS.length];const count=S.products.filter(p=>p.category===c).length;const isEd=S.catEdit&&S.catEdit.index===i;
+      return `<div class="cat-row"><span class="cat-dot" style="background:${cc}"></span>
+        ${isEd?`<input class="cat-edit-input" id="cat_edit_inp" type="text" value="${esc(S.catEdit.value)}" onkeydown="catEditKey(event,${i})">`:`<span class="cat-name-span">${esc(c)}</span>`}
+        <span class="cat-count">${count} ürün</span>
+        <div style="display:flex;gap:6px">${isEd
+          ?`<button class="btn btn-sm btn-primary" onclick="saveCatEdit(${i})"><i class="ti ti-check"></i> Kaydet</button><button class="btn btn-sm" onclick="cancelCatEdit()"><i class="ti ti-x"></i></button>`
+          :`<button class="btn btn-sm btn-icon" onclick="startCatEdit(${i})"><i class="ti ti-pencil"></i></button>${count===0?`<button class="btn btn-sm btn-icon btn-danger" onclick="deleteCategory(${i})"><i class="ti ti-trash"></i></button>`:`<button class="btn btn-sm btn-icon" disabled style="opacity:.25"><i class="ti ti-trash"></i></button>`}`}
+        </div>
+      </div>`;
+    }).join('')}</div></div>
   </div>`;
 }
 
-/* ─── EAN ─── */
+/* ── EAN ── */
 function renderEAN(){
   const used=S.eanPool.filter(e=>e.usedBy).length,avail=S.eanPool.length-used;
   return `
-  <div class="section-header"><div><h2>EAN Kodu Havuzu</h2><p>Kodları toplu yükleyin · Yeni ürünlere sırayla atanır</p></div>
+  <div class="section-header"><div><h2>EAN Kodu Havuzu</h2><p>Kodları toplu yükleyin</p></div>
     <div style="display:flex;gap:20px"><div style="text-align:right"><div style="font-size:20px;font-weight:600;color:var(--green)">${avail}</div><div style="font-size:11px;color:var(--text3)">Kullanılabilir</div></div><div style="text-align:right"><div style="font-size:20px;font-weight:600;color:var(--text2)">${used}</div><div style="font-size:11px;color:var(--text3)">Kullanılan</div></div></div>
   </div>
-  <div class="form-card" style="margin-bottom:16px">
-    <h3><i class="ti ti-upload"></i> Toplu Kod Yükleme</h3>
-    <div class="form-group"><label>EAN Kodları — her satıra bir kod, ya da virgülle ayırın</label><textarea id="ean_inp" placeholder="8680000000001&#10;8680000000002" style="font-family:'JetBrains Mono',monospace;font-size:12px;min-height:100px"></textarea></div>
-    <div id="ean_feedback"></div>
-    <button class="btn btn-primary" onclick="bulkAddEAN()"><i class="ti ti-upload"></i> Kodları Yükle</button>
+  <div class="form-card" style="margin-bottom:16px"><h3><i class="ti ti-upload"></i> Toplu Kod Yükleme</h3>
+    <div class="form-group"><label>EAN Kodları — her satıra bir kod</label><textarea id="ean_inp" placeholder="8680000000001&#10;8680000000002" style="font-family:'JetBrains Mono',monospace;font-size:12px;min-height:100px"></textarea></div>
+    <div id="ean_feedback"></div><button class="btn btn-primary" onclick="bulkAddEAN()"><i class="ti ti-upload"></i> Kodları Yükle</button>
   </div>
-  <div class="table-card"><div class="table-header"><h2>Kod Listesi</h2></div>
-    <div style="padding:12px 16px">
-      ${S.eanPool.length===0?`<div class="empty-state"><i class="ti ti-barcode-off"></i><p>EAN havuzu boş</p></div>`:`<div class="ean-list">${S.eanPool.map((e,i)=>`<div class="ean-row ${e.usedBy?'used':''}"><span class="ean-code-text">${esc(e.code)}</span>${e.usedBy?`<span class="ean-assigned">→ ${esc(e.usedBy)}</span>`:`<span class="ean-available"><i class="ti ti-check" style="font-size:12px"></i> Kullanılabilir</span>`}${!e.usedBy?`<button class="btn btn-icon btn-danger btn-sm" onclick="removeEAN(${i})"><i class="ti ti-trash"></i></button>`:`<span style="width:28px"></span>`}</div>`).join('')}</div>`}
-    </div>
-  </div>`;
+  <div class="table-card"><div class="table-header"><h2>Kod Listesi</h2></div><div style="padding:12px 16px">
+    ${S.eanPool.length===0?`<div class="empty-state"><i class="ti ti-barcode-off"></i><p>EAN havuzu boş</p></div>`:`<div class="ean-list">${S.eanPool.map((e,i)=>`<div class="ean-row ${e.usedBy?'used':''}"><span class="ean-code-text">${esc(e.code)}</span>${e.usedBy?`<span class="ean-assigned">→ ${esc(e.usedBy)}</span>`:`<span style="font-size:11px;color:var(--green)"><i class="ti ti-check" style="font-size:12px"></i> Kullanılabilir</span>`}${!e.usedBy?`<button class="btn btn-icon btn-danger btn-sm" onclick="removeEAN(${i})"><i class="ti ti-trash"></i></button>`:`<span style="width:28px"></span>`}</div>`).join('')}</div>`}
+  </div></div>`;
 }
 
-/* ─── ACTIONS ─── */
-function setView(v){S.view=v;S.catEdit=null;if(v==='add')S.form=freshForm();render();}
-
+/* ── EVENT ATTACHMENT ── */
 function attachAppEvents(){
   document.getElementById('new_cat')?.addEventListener('keydown',e=>{if(e.key==='Enter')addCategory();});
   document.getElementById('new_cat')?.addEventListener('input',e=>{S.catFormVal=e.target.value;});
   document.getElementById('brand_name')?.addEventListener('input',e=>{S.brandForm.name=e.target.value;});
   const ce=document.getElementById('cat_edit_inp');
   if(ce){ce.focus();ce.select();ce.addEventListener('input',e=>{if(S.catEdit)S.catEdit.value=e.target.value;});}
-  ['f_name','f_mname','f_tech','f_useful','f_desc'].forEach(id=>{
-    document.getElementById(id)?.addEventListener('input',e=>{
-      const map={f_name:'name',f_mname:'marketName',f_tech:'techSpecs',f_useful:'usefulInfo',f_desc:'desc'};
-      if(map[id])S.form[map[id]]=e.target.value;
-    });
-  });
+  const fieldMap={f_name:'name',f_mname:'marketName',f_tech:'techSpecs',f_useful:'usefulInfo',f_desc:'desc'};
+  Object.entries(fieldMap).forEach(([id,key])=>{document.getElementById(id)?.addEventListener('input',e=>{S.form[key]=e.target.value;});});
   document.getElementById('f_cat')?.addEventListener('change',e=>{S.form.category=e.target.value;});
   document.getElementById('f_brand')?.addEventListener('change',e=>{S.form.brandId=e.target.value;});
+  // sync mat tag buttons
+  if(S.materialForm&&S.materialForm.usageTags){
+    S.materialForm.usageTags.forEach(t=>{
+      const btn=document.getElementById('mattag_'+t.replace(/[^a-z0-9]/gi,'_'));
+      if(btn)btn.classList.add('active');
+    });
+  }
 }
 
+/* ── PRODUCT ACTIONS ── */
 function addImages(input){Array.from(input.files).forEach(f=>{const r=new FileReader();r.onload=e=>{S.form.images.push({name:f.name,src:e.target.result});render();};r.readAsDataURL(f);});input.value='';}
 function removeImage(i){S.form.images.splice(i,1);render();}
 function addCE(input){if(input.files[0]){S.form.ceDoc=input.files[0].name;input.value='';render();}}
@@ -595,7 +623,20 @@ function removeCE(){S.form.ceDoc=null;render();}
 function addVideoUrl(){const v=document.getElementById('vid_url');if(!v||!v.value.trim())return;S.form.videos.push({type:'url',url:v.value.trim(),name:v.value.trim()});v.value='';render();}
 function addVideos(input){Array.from(input.files).forEach(f=>{const r=new FileReader();r.onload=e=>{S.form.videos.push({type:'file',name:f.name,src:e.target.result});render();};r.readAsDataURL(f);});input.value='';}
 function removeVideo(i){S.form.videos.splice(i,1);render();}
-function setBrandLogo(input){if(input.files[0]){const r=new FileReader();r.onload=e=>{S.brandForm.logo=e.target.result;render();};r.readAsDataURL(input.files[0]);}input.value='';}
+
+function editProduct(i){
+  const p=S.products[i];
+  S.editIndex=i;
+  S.form={
+    name:p.name||'',marketName:p.marketName||'',brandId:p.brandId||'',category:p.category||'',
+    desc:p.desc||'',techSpecs:p.techSpecs||'',usefulInfo:p.usefulInfo||'',
+    images:(p.images||[]).map((src,j)=>({name:'görsel_'+(j+1)+'.jpg',src})),
+    videos:p.videos||[],ceDoc:p.ceDoc||null,errors:{}
+  };
+  S.view='add';render();
+}
+
+function cancelEdit(){S.editIndex=null;S.form=freshForm();S.view='products';render();}
 
 function submitProduct(){
   const name=document.getElementById('f_name').value.trim();
@@ -612,165 +653,181 @@ function submitProduct(){
   if(S.form.images.length<2)errors.images='En az 2 görsel yüklenmesi zorunludur.';
   if(!S.form.ceDoc)errors.ceDoc='CE belgesi yüklenmesi zorunludur.';
   if(Object.keys(errors).length){S.form={...S.form,name,marketName,brandId,category,desc,techSpecs,usefulInfo,errors};render();return;}
-  const avail=S.eanPool.filter(e=>!e.usedBy);
-  if(!avail.length){showToast('EAN havuzu boş!','error');return;}
-  avail[0].usedBy=name;
-  S.products.push({name,marketName,brandId,category,desc,techSpecs,usefulInfo,images:S.form.images.map(i=>i.src),videos:S.form.videos||[],ceDoc:S.form.ceDoc,ean:avail[0].code,addedBy:S.googleUser?.name||S.googleUser?.email||'?',addedAt:new Date().toLocaleDateString('tr-TR')});
-  saveDB();showToast(`"${name}" kaydedildi · EAN: ${avail[0].code}`);
-  S.view='products';S.form=freshForm();render();
+  if(S.editIndex!==null){
+    // update existing
+    const p=S.products[S.editIndex];
+    S.products[S.editIndex]={...p,name,marketName,brandId,category,desc,techSpecs,usefulInfo,images:S.form.images.map(i=>i.src),videos:S.form.videos||[],ceDoc:S.form.ceDoc};
+    showToast(`"${name}" güncellendi.`);S.editIndex=null;
+  } else {
+    const avail=S.eanPool.filter(e=>!e.usedBy);
+    if(!avail.length){showToast('EAN havuzu boş!','error');return;}
+    avail[0].usedBy=name;
+    S.products.push({name,marketName,brandId,category,desc,techSpecs,usefulInfo,images:S.form.images.map(i=>i.src),videos:S.form.videos||[],ceDoc:S.form.ceDoc,ean:avail[0].code,addedBy:S.googleUser?.name||S.googleUser?.email||'?',addedAt:new Date().toLocaleDateString('tr-TR')});
+    showToast(`"${name}" kaydedildi · EAN: ${S.eanPool.find(e=>e.usedBy===name)?.code}`);
+  }
+  saveDB();S.form=freshForm();S.view='products';render();
 }
 
-function resetForm(){S.form=freshForm();render();}
 function deleteProduct(i){
   if(!confirm('Bu ürünü silmek istediğinizden emin misiniz?'))return;
   const p=S.products[i];const ean=S.eanPool.find(e=>e.code===p.ean);if(ean)ean.usedBy=null;
   S.products.splice(i,1);saveDB();render();showToast('Ürün silindi.');
 }
 
+/* ── MATERIAL ACTIONS ── */
+let _editMatIndex=null;
+function openMaterialModal(){
+  _editMatIndex=null;
+  S.materialForm={name:'',usageWhere:'',usageTags:[],notes:'',images:[]};
+  document.getElementById('mat-modal').style.display='flex';
+  document.getElementById('mat-modal-title').textContent='Malzeme Ekle';
+  setTimeout(()=>{
+    document.getElementById('mat_name').value='';
+    document.getElementById('mat_where').value='';
+    document.getElementById('mat_notes').value='';
+    document.getElementById('mat_img_chips').innerHTML='';
+    USAGE_OPTIONS.forEach(t=>{ const b=document.getElementById('mattag_'+t.replace(/[^a-z0-9]/gi,'_')); if(b)b.classList.remove('active'); });
+  },10);
+}
+function editMaterial(i){
+  _editMatIndex=i;const m=S.materials[i];
+  S.materialForm={name:m.name||'',usageWhere:m.usageWhere||'',usageTags:[...(m.usageTags||[])],notes:m.notes||'',images:[...(m.images||[])]};
+  document.getElementById('mat-modal').style.display='flex';
+  document.getElementById('mat-modal-title').textContent='Malzeme Düzenle';
+  setTimeout(()=>{
+    document.getElementById('mat_name').value=m.name||'';
+    document.getElementById('mat_where').value=m.usageWhere||'';
+    document.getElementById('mat_notes').value=m.notes||'';
+    const chips=document.getElementById('mat_img_chips');chips.innerHTML='';
+    (m.images||[]).forEach((img,j)=>{chips.innerHTML+=`<div class="file-chip"><img src="${img.src}" alt=""><span class="chip-name">${esc(img.name||'görsel')}</span>${img.w?`<span style="font-size:10px;color:var(--text3);margin-left:4px">${img.w}×${img.h}</span>`:''}<button class="chip-remove" onclick="removeMatImgByIdx(${j})">×</button></div>`;});
+    USAGE_OPTIONS.forEach(t=>{ const b=document.getElementById('mattag_'+t.replace(/[^a-z0-9]/gi,'_')); if(b){if(S.materialForm.usageTags.includes(t))b.classList.add('active');else b.classList.remove('active');} });
+  },10);
+}
+function closeMaterialModal(){document.getElementById('mat-modal').style.display='none';}
+function toggleMatTag(t){
+  const idx=S.materialForm.usageTags.indexOf(t);
+  if(idx>-1)S.materialForm.usageTags.splice(idx,1);else S.materialForm.usageTags.push(t);
+  const btn=document.getElementById('mattag_'+t.replace(/[^a-z0-9]/gi,'_'));
+  if(btn)btn.classList.toggle('active',S.materialForm.usageTags.includes(t));
+}
+function addMatImages(input){
+  Array.from(input.files).forEach(f=>{
+    const r=new FileReader();
+    r.onload=e=>{
+      const img=new Image();img.onload=()=>{
+        S.materialForm.images.push({name:f.name,src:e.target.result,w:img.naturalWidth,h:img.naturalHeight});
+        const chips=document.getElementById('mat_img_chips');
+        const j=S.materialForm.images.length-1;
+        const div=document.createElement('div');div.className='file-chip';div.id='mchip_'+j;
+        div.innerHTML=`<img src="${e.target.result}" alt=""><span class="chip-name">${esc(f.name)}</span><span style="font-size:10px;color:var(--text3);margin-left:4px">${img.naturalWidth}×${img.naturalHeight}</span><button class="chip-remove" onclick="removeMatImgByIdx(${j})">×</button>`;
+        chips.appendChild(div);
+      };img.src=e.target.result;
+    };r.readAsDataURL(f);
+  });input.value='';
+}
+function removeMatImgByIdx(j){S.materialForm.images.splice(j,1);if(_editMatIndex!==null){editMaterial(_editMatIndex);}else{document.getElementById('mat_img_chips').innerHTML='';S.materialForm.images.forEach((img,k)=>{const chips=document.getElementById('mat_img_chips');const div=document.createElement('div');div.className='file-chip';div.innerHTML=`<img src="${img.src}" alt=""><span class="chip-name">${esc(img.name)}</span>${img.w?`<span style="font-size:10px;color:var(--text3);margin-left:4px">${img.w}×${img.h}</span>`:''}<button class="chip-remove" onclick="removeMatImgByIdx(${k})">×</button>`;chips.appendChild(div);});}}
+function saveMaterial(){
+  const name=document.getElementById('mat_name').value.trim();
+  const usageWhere=document.getElementById('mat_where').value.trim();
+  if(!name||!usageWhere){showToast('Ad ve kullanım yeri zorunludur','error');return;}
+  if(S.materialForm.images.length===0){showToast('En az 1 görsel yükleyin','error');return;}
+  const mat={id:uid(),name,usageWhere,usageTags:[...S.materialForm.usageTags],notes:document.getElementById('mat_notes').value.trim(),images:[...S.materialForm.images]};
+  if(_editMatIndex!==null){S.materials[_editMatIndex]=mat;showToast('Malzeme güncellendi.');}
+  else{S.materials.push(mat);showToast(`"${name}" eklendi.`);}
+  closeMaterialModal();saveDB();render();
+}
+function deleteMaterial(i){if(!confirm('Bu malzemeyi silmek istediğinizden emin misiniz?'))return;S.materials.splice(i,1);saveDB();render();showToast('Malzeme silindi.');}
+function downloadMaterial(i){
+  const m=S.materials[i];if(!m||!m.images||!m.images[0])return;
+  m.images.forEach((img,j)=>{
+    const a=document.createElement('a');a.href=img.src;a.download=img.name||(m.name+'_'+(j+1)+'.jpg');a.click();
+  });
+  showToast('İndiriliyor...');
+}
+function viewAllImages(i){
+  const m=S.materials[i];if(!m||!m.images)return;
+  // cycle through images with lightbox
+  let cur=0;
+  const show=()=>openLightbox(m.images[cur].src,`${m.name} (${cur+1}/${m.images.length}) — ${m.images[cur].w||'?'}×${m.images[cur].h||'?'}px`);
+  show();
+}
+
+/* ── LIGHTBOX ── */
+function openLightbox(src,info='',w,h){
+  const lb=document.getElementById('lightbox');const img=document.getElementById('lightbox-img');const inf=document.getElementById('lightbox-info');
+  if(!src){return;}
+  img.src=src;
+  const res=(w&&h)?` — ${w}×${h}px`:'';
+  inf.textContent=info+res;
+  lb.classList.add('open');
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox'))closeLightbox();});
+// hover preview for product thumbnails (non-modal)
+function showLightboxHover(e,src){
+  // Just show a small tooltip preview near cursor - use a lightweight approach
+  let el=document.getElementById('_hov');
+  if(!el){el=document.createElement('div');el.id='_hov';el.style.cssText='position:fixed;z-index:9990;pointer-events:none;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.1)';el.innerHTML='<img style="width:160px;height:160px;object-fit:cover;display:block">';document.body.appendChild(el);}
+  el.querySelector('img').src=src;el.style.display='block';el.style.left=(e.clientX+12)+'px';el.style.top=Math.max(8,e.clientY-80)+'px';
+}
+function closeLightboxHover(){const el=document.getElementById('_hov');if(el)el.style.display='none';}
+document.addEventListener('mousemove',e=>{const el=document.getElementById('_hov');if(el&&el.style.display!=='none'){el.style.left=(e.clientX+12)+'px';el.style.top=Math.max(8,e.clientY-80)+'px';}});
+
+/* ── BRANDS ── */
+function setBrandLogo(input){if(input.files[0]){const r=new FileReader();r.onload=e=>{S.brandForm.logo=e.target.result;render();};r.readAsDataURL(input.files[0]);}input.value='';}
 function addBrand(){
   const name=document.getElementById('brand_name')?.value.trim();
   if(!name){showToast('Marka adı gerekli','error');return;}
   if(S.brands.find(b=>b.name===name)){showToast('Bu marka zaten var','error');return;}
-  S.brands.push({id:'brand_'+Date.now(),name,logo:S.brandForm.logo||null});
+  S.brands.push({id:uid(),name,logo:S.brandForm.logo||null});
   S.brandForm={name:'',logo:null};saveDB();render();showToast(`"${name}" markası eklendi.`);
 }
-function deleteBrand(i){
-  if(!confirm('Markayı silmek istediğinizden emin misiniz?'))return;
-  S.brands.splice(i,1);saveDB();render();showToast('Marka silindi.');
-}
+function deleteBrand(i){if(!confirm('Markayı silmek istediğinizden emin misiniz?'))return;S.brands.splice(i,1);saveDB();render();}
 
-function addCategory(){
-  const v=document.getElementById('new_cat')?.value.trim();if(!v)return;
-  if(S.categories.includes(v)){showToast('Bu kategori zaten mevcut.','error');return;}
-  S.categories.push(v);S.catFormVal='';saveDB();render();showToast(`"${v}" kategorisi eklendi.`);
-}
+/* ── CATEGORIES ── */
+function addCategory(){const v=document.getElementById('new_cat')?.value.trim();if(!v)return;if(S.categories.includes(v)){showToast('Bu kategori zaten mevcut.','error');return;}S.categories.push(v);S.catFormVal='';saveDB();render();showToast(`"${v}" kategorisi eklendi.`);}
 function startCatEdit(i){S.catEdit={index:i,value:S.categories[i]};render();}
 function cancelCatEdit(){S.catEdit=null;render();}
 function catEditKey(e,i){if(e.key==='Enter')saveCatEdit(i);if(e.key==='Escape')cancelCatEdit();}
-function saveCatEdit(i){
-  const nv=S.catEdit?.value?.trim();if(!nv)return;
-  if(S.categories.includes(nv)&&S.categories[i]!==nv){showToast('Bu isimde başka bir kategori var.','error');return;}
-  const old=S.categories[i];S.categories[i]=nv;
-  S.products.forEach(p=>{if(p.category===old)p.category=nv;});
-  S.catEdit=null;saveDB();render();showToast('Kategori güncellendi.');
-}
+function saveCatEdit(i){const nv=S.catEdit?.value?.trim();if(!nv)return;if(S.categories.includes(nv)&&S.categories[i]!==nv){showToast('Bu isimde başka bir kategori var.','error');return;}const old=S.categories[i];S.categories[i]=nv;S.products.forEach(p=>{if(p.category===old)p.category=nv;});S.catEdit=null;saveDB();render();showToast('Kategori güncellendi.');}
 function deleteCategory(i){if(!confirm('Kategoriyi silmek istediğinizden emin misiniz?'))return;S.categories.splice(i,1);saveDB();render();}
-function bulkAddEAN(){
-  const raw=document.getElementById('ean_inp')?.value||'';
-  const codes=raw.split(/[\n,;]+/).map(s=>s.trim()).filter(Boolean);
-  let added=0,dupe=0;
-  codes.forEach(code=>{if(S.eanPool.find(e=>e.code===code)){dupe++;return;}S.eanPool.push({code,usedBy:null});added++;});
-  saveDB();
-  const fb=document.getElementById('ean_feedback');
-  if(fb)fb.innerHTML=`<div class="info-box" style="margin-bottom:10px"><i class="ti ti-check"></i>${added} kod eklendi${dupe?`, ${dupe} tekrar atlandı`:''}</div>`;
-  if(document.getElementById('ean_inp'))document.getElementById('ean_inp').value='';
-  showToast(`${added} EAN kodu yüklendi.`);setTimeout(()=>render(),1800);
-}
+
+/* ── EAN ── */
+function bulkAddEAN(){const raw=document.getElementById('ean_inp')?.value||'';const codes=raw.split(/[\n,;]+/).map(s=>s.trim()).filter(Boolean);let added=0,dupe=0;codes.forEach(code=>{if(S.eanPool.find(e=>e.code===code)){dupe++;return;}S.eanPool.push({code,usedBy:null});added++;});saveDB();const fb=document.getElementById('ean_feedback');if(fb)fb.innerHTML=`<div class="info-box" style="margin-bottom:10px"><i class="ti ti-check"></i>${added} kod eklendi${dupe?`, ${dupe} tekrar atlandı`:''}</div>`;if(document.getElementById('ean_inp'))document.getElementById('ean_inp').value='';showToast(`${added} EAN kodu yüklendi.`);setTimeout(()=>render(),1800);}
 function removeEAN(i){S.eanPool.splice(i,1);saveDB();render();}
 
-function toggleCatalogSelect(i){
-  const idx=S.catalogSelected.indexOf(i);
-  if(idx>-1)S.catalogSelected.splice(idx,1);else S.catalogSelected.push(i);
-  render();
-}
+/* ── CATALOG ── */
+function setView(v){S.view=v;S.catEdit=null;if(v==='add'&&S.editIndex===null)S.form=freshForm();render();}
+function toggleCatalogSelect(i){const idx=S.catalogSelected.indexOf(i);if(idx>-1)S.catalogSelected.splice(idx,1);else S.catalogSelected.push(i);render();}
 function catalogSelectAll(){S.catalogSelected=S.products.map((_,i)=>i);render();}
-
-/* ─── CATALOG PDF GENERATION ─── */
 function generateCatalog(){
-  if(S.catalogSelected.length===0){showToast('Ürün seçin','error');return;}
-  const area=document.getElementById('catalog-print-area');
-  area.innerHTML='';
+  if(!S.catalogSelected.length){showToast('Ürün seçin','error');return;}
+  const area=document.getElementById('catalog-print-area');area.innerHTML='';
   S.catalogSelected.forEach(pi=>{
-    const p=S.products[pi];
-    const br=getBrand(p.brandId);
-    const img1=p.images&&p.images[0]?p.images[0]:'';
-    const img2=p.images&&p.images[1]?p.images[1]:'';
-    const cc=catColor(p.category);
-
-    // Format tech specs: split by newline, show as list items
-    const techLines=(p.techSpecs||'').split('\n').filter(l=>l.trim());
-    const usefulLines=(p.usefulInfo||'').split('\n').filter(l=>l.trim());
-
-    const page=document.createElement('div');
-    page.className='catalog-page';
-    page.innerHTML=`
-    <style>
-      .cp { width:297mm;height:210mm;background:#fff;position:relative;overflow:hidden;display:flex;font-family:'Inter',Arial,sans-serif; }
-      .cp-left { width:105mm;background:#f8f9ff;border-right:1px solid #e8eaf0;display:flex;flex-direction:column;align-items:center;padding:10mm 8mm 14mm; }
-      .cp-right { flex:1;padding:10mm 10mm 14mm 10mm;display:flex;flex-direction:column;overflow:hidden; }
-      .cp-img { width:85mm;height:60mm;object-fit:contain;border-radius:6px;background:#fff;border:1px solid #e8eaf0;display:block; }
-      .cp-img2 { width:85mm;height:50mm;object-fit:contain;border-radius:6px;background:#fff;border:1px solid #e8eaf0;display:block;margin-top:4mm; }
-      .cp-img-ph { width:85mm;height:60mm;border-radius:6px;background:#e8eaf0;display:flex;align-items:center;justify-content:center;font-size:32px;color:#b0b4c8; }
-      .cp-ean { font-family:'JetBrains Mono',monospace;font-size:10px;color:#888;margin-top:4mm;letter-spacing:0.04em; }
-      .cp-cat { font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:${cc};margin-bottom:2mm; }
-      .cp-brand { font-size:11px;color:#666;margin-bottom:1mm; }
-      .cp-title { font-size:17px;font-weight:700;color:#1a1c2e;line-height:1.25;margin-bottom:1mm; }
-      .cp-subtitle { font-size:12px;color:#555;margin-bottom:4mm;font-style:italic; }
-      .cp-desc { font-size:10px;color:#444;line-height:1.55;margin-bottom:4mm;max-height:18mm;overflow:hidden; }
-      .cp-section-title { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#1a1c2e;margin-bottom:2mm;padding-bottom:1mm;border-bottom:1.5px solid ${cc}; }
-      .cp-specs { list-style:none;padding:0;margin:0 0 3mm 0; }
-      .cp-specs li { font-size:9.5px;color:#333;padding:1mm 0;border-bottom:0.5px solid #f0f0f0;line-height:1.4;display:flex;align-items:flex-start;gap:2mm; }
-      .cp-specs li::before { content:'›';color:${cc};font-weight:700;flex-shrink:0; }
-      .cp-useful { list-style:none;padding:0;margin:0; }
-      .cp-useful li { font-size:9.5px;color:#333;padding:1mm 0;border-bottom:0.5px solid #f0f0f0;line-height:1.4;display:flex;align-items:flex-start;gap:2mm; }
-      .cp-useful li::before { content:'✓';color:${cc};font-weight:700;flex-shrink:0; }
-      .cp-logo-wrap { position:absolute;bottom:6mm;left:7mm;display:flex;align-items:center;gap:3mm; }
-      .cp-brand-logo { width:24mm;max-height:14mm;object-fit:contain; }
-      .cp-brand-name-footer { font-size:10px;font-weight:600;color:#555; }
-      .cp-accent-bar { position:absolute;top:0;left:0;right:0;height:2.5mm;background:${cc}; }
-      .cp-ean-footer { position:absolute;bottom:6mm;right:8mm;font-family:'JetBrains Mono',monospace;font-size:9px;color:#aaa; }
-      .cp-sections { display:flex;gap:6mm;flex:1;overflow:hidden; }
-      .cp-col { flex:1;overflow:hidden; }
-    </style>
-    <div class="cp">
-      <div class="cp-accent-bar"></div>
-      <!-- LEFT -->
-      <div class="cp-left">
-        ${img1?`<img class="cp-img" src="${img1}" alt="">`:`<div class="cp-img-ph">🖼</div>`}
-        ${img2?`<img class="cp-img2" src="${img2}" alt="">`:''}
-        <span class="cp-ean">${p.ean?'EAN: '+p.ean:''}</span>
-      </div>
-      <!-- RIGHT -->
+    const p=S.products[pi];const br=getBrand(p.brandId);const img1=p.images&&p.images[0]?p.images[0]:'';const img2=p.images&&p.images[1]?p.images[1]:'';const cc=catColor(p.category);
+    const techLines=(p.techSpecs||'').split('\n').filter(l=>l.trim());const usefulLines=(p.usefulInfo||'').split('\n').filter(l=>l.trim());
+    const page=document.createElement('div');page.className='catalog-page';
+    page.innerHTML=`<style>.cp{width:297mm;height:210mm;background:#fff;position:relative;overflow:hidden;display:flex;font-family:'Inter',Arial,sans-serif}.cp-left{width:105mm;background:#f8f9ff;border-right:1px solid #e8eaf0;display:flex;flex-direction:column;align-items:center;padding:10mm 8mm 14mm}.cp-right{flex:1;padding:10mm 10mm 14mm 10mm;display:flex;flex-direction:column;overflow:hidden}.cp-img{width:85mm;height:60mm;object-fit:contain;border-radius:6px;background:#fff;border:1px solid #e8eaf0;display:block}.cp-img2{width:85mm;height:50mm;object-fit:contain;border-radius:6px;background:#fff;border:1px solid #e8eaf0;display:block;margin-top:4mm}.cp-img-ph{width:85mm;height:60mm;border-radius:6px;background:#e8eaf0;display:flex;align-items:center;justify-content:center;font-size:32px;color:#b0b4c8}.cp-ean{font-family:'JetBrains Mono',monospace;font-size:10px;color:#888;margin-top:4mm}.cp-cat{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:${cc};margin-bottom:2mm}.cp-brand{font-size:11px;color:#666;margin-bottom:1mm}.cp-title{font-size:17px;font-weight:700;color:#1a1c2e;line-height:1.25;margin-bottom:1mm}.cp-subtitle{font-size:12px;color:#555;margin-bottom:4mm;font-style:italic}.cp-desc{font-size:10px;color:#444;line-height:1.55;margin-bottom:4mm;max-height:18mm;overflow:hidden}.cp-section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#1a1c2e;margin-bottom:2mm;padding-bottom:1mm;border-bottom:1.5px solid ${cc}}.cp-specs{list-style:none;padding:0;margin:0 0 3mm 0}.cp-specs li{font-size:9.5px;color:#333;padding:1mm 0;border-bottom:.5px solid #f0f0f0;line-height:1.4;display:flex;align-items:flex-start;gap:2mm}.cp-specs li::before{content:'›';color:${cc};font-weight:700;flex-shrink:0}.cp-useful{list-style:none;padding:0;margin:0}.cp-useful li{font-size:9.5px;color:#333;padding:1mm 0;border-bottom:.5px solid #f0f0f0;line-height:1.4;display:flex;align-items:flex-start;gap:2mm}.cp-useful li::before{content:'✓';color:${cc};font-weight:700;flex-shrink:0}.cp-logo-wrap{position:absolute;bottom:6mm;left:7mm;display:flex;align-items:center;gap:3mm}.cp-brand-logo{width:24mm;max-height:14mm;object-fit:contain}.cp-accent-bar{position:absolute;top:0;left:0;right:0;height:2.5mm;background:${cc}}.cp-ean-footer{position:absolute;bottom:6mm;right:8mm;font-family:'JetBrains Mono',monospace;font-size:9px;color:#aaa}.cp-sections{display:flex;gap:6mm;flex:1;overflow:hidden}.cp-col{flex:1;overflow:hidden}</style>
+    <div class="cp"><div class="cp-accent-bar"></div>
+      <div class="cp-left">${img1?`<img class="cp-img" src="${img1}" alt="">`:`<div class="cp-img-ph">🖼</div>`}${img2?`<img class="cp-img2" src="${img2}" alt="">`:''}${p.ean?`<span class="cp-ean">EAN: ${p.ean}</span>`:''}</div>
       <div class="cp-right">
-        <div class="cp-cat">${p.category||''}</div>
-        ${br?`<div class="cp-brand">${br.name}</div>`:''}
-        <div class="cp-title">${p.name||''}</div>
-        <div class="cp-subtitle">${p.marketName||''}</div>
+        <div class="cp-cat">${p.category||''}</div>${br?`<div class="cp-brand">${br.name}</div>`:''}
+        <div class="cp-title">${p.name||''}</div><div class="cp-subtitle">${p.marketName||''}</div>
         ${p.desc?`<div class="cp-desc">${p.desc}</div>`:''}
         <div class="cp-sections">
-          ${techLines.length>0?`<div class="cp-col">
-            <div class="cp-section-title">Teknik Özellikler</div>
-            <ul class="cp-specs">${techLines.slice(0,10).map(l=>`<li>${l}</li>`).join('')}</ul>
-          </div>`:''}
-          ${usefulLines.length>0?`<div class="cp-col">
-            <div class="cp-section-title">Neden Bu Ürün?</div>
-            <ul class="cp-useful">${usefulLines.slice(0,10).map(l=>`<li>${l}</li>`).join('')}</ul>
-          </div>`:''}
+          ${techLines.length?`<div class="cp-col"><div class="cp-section-title">Teknik Özellikler</div><ul class="cp-specs">${techLines.slice(0,10).map(l=>`<li>${l}</li>`).join('')}</ul></div>`:''}
+          ${usefulLines.length?`<div class="cp-col"><div class="cp-section-title">Neden Bu Ürün?</div><ul class="cp-useful">${usefulLines.slice(0,10).map(l=>`<li>${l}</li>`).join('')}</ul></div>`:''}
         </div>
       </div>
-      <!-- BRAND LOGO bottom-left -->
-      <div class="cp-logo-wrap">
-        ${br&&br.logo?`<img class="cp-brand-logo" src="${br.logo}" alt="${br.name}">`:''}
-        ${br&&!br.logo?`<span class="cp-brand-name-footer">${br.name}</span>`:''}
-      </div>
+      <div class="cp-logo-wrap">${br&&br.logo?`<img class="cp-brand-logo" src="${br.logo}" alt="${br.name}">`:''}${br&&!br.logo?`<span style="font-size:10px;font-weight:600;color:#555">${br.name}</span>`:''}</div>
       <div class="cp-ean-footer">${p.ean||''}</div>
     </div>`;
     area.appendChild(page);
   });
   area.style.display='block';
-  setTimeout(()=>{
-    window.print();
-    setTimeout(()=>{area.style.display='none';area.innerHTML='';},500);
-  },300);
+  setTimeout(()=>{window.print();setTimeout(()=>{area.style.display='none';area.innerHTML='';},500);},300);
 }
-
-/* ─── HOVER PREVIEW ─── */
-document.addEventListener('mousemove',e=>{
-  const p=document.getElementById('img-preview');
-  if(p&&p.style.display==='block'){p.style.left=(e.clientX+14)+'px';p.style.top=Math.max(8,e.clientY-110)+'px';}
-});
-function showPreview(src){if(!src)return;document.getElementById('preview-img').src=src;document.getElementById('img-preview').style.display='block';}
-function hidePreview(){document.getElementById('img-preview').style.display='none';}
 
 initGoogleAuth();
 </script>
