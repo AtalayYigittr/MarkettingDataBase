@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pazarlama Veritabanı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+:root {
+  --bg: #0f1117;
+  --bg2: #161820;
+  --bg3: #1e2028;
+  --bg4: #252730;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text1: #f0f0f5;
+  --text2: #9496a8;
+  --text3: #5e6175;
+  --accent: #6c7bff;
+  --accent2: #8b98ff;
+  --accent-bg: rgba(108,123,255,0.12);
+  --accent-border: rgba(108,123,255,0.3);
+  --green: #34d399;
+  --green-bg: rgba(52,211,153,0.1);
+  --red: #f87171;
+  --red-bg: rgba(248,113,113,0.1);
+  --amber: #fbbf24;
+  --amber-bg: rgba(251,191,36,0.1);
+  --radius: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text1);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 99px; }
+
+/* ── LAYOUT ── */
+.app-shell { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 220px; min-width: 220px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  position: fixed; top: 0; left: 0; bottom: 0;
+  z-index: 50;
+}
+.main { margin-left: 220px; flex: 1; display: flex; flex-direction: column; }
+.topbar {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 40;
+}
+.content { padding: 28px; max-width: 1200px; }
+
+/* ── SIDEBAR ── */
+.sidebar-logo {
+  padding: 20px 18px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-logo-mark {
+  width: 32px; height: 32px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: #fff; margin-bottom: 10px;
+}
+.sidebar-logo h1 { font-size: 13px; font-weight: 600; color: var(--text1); line-height: 1.3; }
+.sidebar-logo span { font-size: 11px; color: var(--text3); }
+.sidebar-nav { padding: 12px 10px; flex: 1; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 13px; color: var(--text2);
+  transition: all 0.15s;
+  margin-bottom: 2px;
+  border: none; background: none; width: 100%; text-align: left;
+}
+.nav-item:hover { background: var(--bg3); color: var(--text1); }
+.nav-item.active { background: var(--accent-bg); color: var(--accent2); border: 1px solid var(--accent-border); }
+.nav-item i { font-size: 17px; flex-shrink: 0; }
+.nav-item .nav-badge {
+  margin-left: auto;
+  background: var(--bg4); color: var(--text3);
+  font-size: 10px; padding: 1px 6px; border-radius: 99px; font-weight: 500;
+}
+.nav-item.active .nav-badge { background: var(--accent-border); color: var(--accent2); }
+.sidebar-footer {
+  padding: 12px 10px;
+  border-top: 1px solid var(--border);
+}
+.user-chip {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: var(--radius);
+  background: var(--bg3);
+}
+.user-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--accent-bg); border: 1px solid var(--accent-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; color: var(--accent2); flex-shrink: 0;
+}
+.user-info { flex: 1; min-width: 0; }
+.user-info .name { font-size: 12px; font-weight: 500; color: var(--text1); }
+.user-info .role { font-size: 11px; color: var(--text3); }
+.btn-logout {
+  background: none; border: none; color: var(--text3);
+  cursor: pointer; padding: 4px; border-radius: 6px; display: flex;
+  transition: color 0.15s;
+}
+.btn-logout:hover { color: var(--red); }
+
+/* ── TOPBAR ── */
+.page-title { font-size: 15px; font-weight: 600; color: var(--text1); }
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.drive-badge {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--green);
+  background: var(--green-bg); padding: 4px 10px;
+  border-radius: 99px; border: 1px solid rgba(52,211,153,0.2);
+}
+.drive-badge.syncing { color: var(--amber); background: var(--amber-bg); border-color: rgba(251,191,36,0.2); }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border-radius: var(--radius);
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  border: 1px solid var(--border2);
+  background: var(--bg3); color: var(--text1);
+  transition: all 0.15s; white-space: nowrap;
+  font-family: inherit;
+}
+.btn:hover { background: var(--bg4); border-color: var(--border2); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-primary:hover { background: #7a88ff; border-color: #7a88ff; }
+.btn-danger { background: var(--red-bg); border-color: rgba(248,113,113,0.3); color: var(--red); }
+.btn-danger:hover { background: rgba(248,113,113,0.2); }
+.btn-sm { padding: 5px 10px; font-size: 12px; }
+.btn-icon { padding: 7px; gap: 0; }
+
+/* ── STATS ── */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+.stat-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 18px 20px;
+  position: relative; overflow: hidden;
+}
+.stat-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.stat-card.blue::before { background: var(--accent); }
+.stat-card.green::before { background: var(--green); }
+.stat-card.amber::before { background: var(--amber); }
+.stat-card.purple::before { background: #a78bfa; }
+.stat-card .stat-icon {
+  width: 34px; height: 34px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; margin-bottom: 12px;
+}
+.stat-card.blue .stat-icon { background: var(--accent-bg); color: var(--accent2); }
+.stat-card.green .stat-icon { background: var(--green-bg); color: var(--green); }
+.stat-card.amber .stat-icon { background: var(--amber-bg); color: var(--amber); }
+.stat-card.purple .stat-icon { background: rgba(167,139,250,0.1); color: #a78bfa; }
+.stat-card .stat-value { font-size: 26px; font-weight: 600; color: var(--text1); line-height: 1; }
+.stat-card .stat-label { font-size: 12px; color: var(--text3); margin-top: 4px; }
+
+/* ── TABLE ── */
+.table-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.table-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.table-header h2 { font-size: 14px; font-weight: 600; color: var(--text1); }
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  padding: 10px 16px; font-size: 11px; font-weight: 600;
+  color: var(--text3); text-align: left; text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border); background: var(--bg);
+}
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--bg3); }
+tbody td { padding: 12px 16px; font-size: 13px; vertical-align: middle; }
+
+/* ── THUMB ── */
+.thumb-wrap { position: relative; display: inline-block; }
+.thumb {
+  width: 40px; height: 40px; border-radius: 8px;
+  object-fit: cover; border: 1px solid var(--border2);
+  cursor: zoom-in; display: block;
+}
+.thumb-placeholder {
+  width: 40px; height: 40px; border-radius: 8px;
+  background: var(--bg4); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text3); font-size: 16px;
+}
+
+/* ── CATEGORY PILL ── */
+.cat-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 9px; border-radius: 99px; font-size: 11px; font-weight: 500;
+}
+.ean-mono { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text2); }
+
+/* ── FORMS ── */
+.form-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 24px;
+}
+.form-card + .form-card { margin-top: 16px; }
+.form-card h3 { font-size: 14px; font-weight: 600; color: var(--text1); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+.form-card h3 i { color: var(--accent2); }
+.form-section-label {
+  font-size: 11px; font-weight: 600; color: var(--text3);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 12px; margin-top: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.form-section-label::after { content:''; flex:1; height:1px; background: var(--border); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.form-group label { font-size: 12px; font-weight: 500; color: var(--text2); }
+.form-group label .req { color: var(--red); margin-left: 2px; }
+.form-group input, .form-group select, .form-group textarea {
+  padding: 9px 12px; font-size: 13px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--radius); color: var(--text1);
+  font-family: inherit; transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(108,123,255,0.15);
+}
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--text3); }
+.form-group input:disabled { opacity: 0.5; cursor: not-allowed; }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-group select option { background: var(--bg3); }
+.field-error { font-size: 11px; color: var(--red); display: flex; align-items: center; gap: 4px; }
+.upload-zone {
+  border: 1.5px dashed var(--border2); border-radius: var(--radius-lg);
+  padding: 24px 20px; text-align: center; cursor: pointer;
+  background: var(--bg); transition: all 0.2s;
+}
+.upload-zone:hover { border-color: var(--accent); background: var(--accent-bg); }
+.upload-zone i { font-size: 28px; color: var(--text3); display: block; margin-bottom: 8px; }
+.upload-zone p { font-size: 12px; color: var(--text3); }
+.upload-zone p strong { color: var(--accent2); font-weight: 500; }
+.file-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.file-chip {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--radius); padding: 5px 8px 5px 5px;
+  font-size: 12px; color: var(--text1);
+}
+.file-chip img { width: 30px; height: 30px; object-fit: cover; border-radius: 5px; }
+.file-chip .chip-name { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-chip .chip-remove {
+  background: none; border: none; color: var(--text3); cursor: pointer;
+  padding: 2px; border-radius: 4px; display: flex; line-height: 1; font-size: 15px;
+  transition: color 0.15s;
+}
+.file-chip .chip-remove:hover { color: var(--red); }
+.form-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
+
+/* ── CATEGORIES PAGE ── */
+.cat-list { display: flex; flex-direction: column; gap: 8px; }
+.cat-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; background: var(--bg3);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  transition: border-color 0.15s;
+}
+.cat-row:hover { border-color: var(--border2); }
+.cat-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.cat-name { flex: 1; font-size: 13px; font-weight: 500; color: var(--text1); }
+.cat-count { font-size: 12px; color: var(--text3); min-width: 60px; }
+.cat-edit-input {
+  flex: 1; padding: 5px 10px; font-size: 13px; font-weight: 500;
+  background: var(--bg4); border: 1px solid var(--accent);
+  border-radius: 6px; color: var(--text1); font-family: inherit;
+  box-shadow: 0 0 0 3px rgba(108,123,255,0.15);
+}
+.cat-edit-input:focus { outline: none; }
+
+/* ── EAN PAGE ── */
+.ean-list { max-height: 360px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
+.ean-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; background: var(--bg3);
+  border: 1px solid var(--border); border-radius: var(--radius);
+}
+.ean-row.used { opacity: 0.45; }
+.ean-code-text { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text1); }
+.ean-assigned { font-size: 11px; color: var(--text3); }
+.ean-available { font-size: 11px; color: var(--green); }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--radius-lg); padding: 12px 16px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--text1);
+  box-shadow: var(--shadow);
+  transform: translateY(80px); opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-width: 320px;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.success i { color: var(--green); }
+.toast.error i { color: var(--red); }
+.toast.syncing i { color: var(--amber); animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── HOVER PREVIEW ── */
+#img-preview {
+  position: fixed; z-index: 9998; pointer-events: none;
+  border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow); display: none;
+  border: 1px solid var(--border2);
+}
+#img-preview img { width: 200px; height: 200px; object-fit: cover; display: block; }
+
+/* ── LOGIN ── */
+.login-screen {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
+}
+.login-panel {
+  width: 380px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-xl); padding: 36px;
+  box-shadow: var(--shadow);
+}
+.login-logo { margin-bottom: 28px; }
+.login-logo-mark {
+  width: 44px; height: 44px; background: var(--accent);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: #fff; margin-bottom: 14px;
+}
+.login-logo h1 { font-size: 20px; font-weight: 600; color: var(--text1); }
+.login-logo p { font-size: 13px; color: var(--text3); margin-top: 4px; }
+.login-error {
+  background: var(--red-bg); border: 1px solid rgba(248,113,113,0.25);
+  border-radius: var(--radius); padding: 10px 12px;
+  font-size: 12px; color: var(--red); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 7px;
+}
+.login-hint {
+  margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--text3); text-align: center; font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  padding: 48px 24px; text-align: center;
+}
+.empty-state i { font-size: 40px; color: var(--text3); display: block; margin-bottom: 12px; }
+.empty-state p { font-size: 14px; color: var(--text2); }
+.empty-state small { font-size: 12px; color: var(--text3); display: block; margin-top: 4px; }
+
+/* ── MISC ── */
+.divider { height: 1px; background: var(--border); margin: 18px 0; }
+.add-cat-row { display: flex; gap: 10px; margin-bottom: 16px; }
+.warning-box {
+  background: var(--amber-bg); border: 1px solid rgba(251,191,36,0.25);
+  border-radius: var(--radius); padding: 10px 14px;
+  font-size: 12px; color: var(--amber);
+  display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+}
+.info-box {
+  background: var(--accent-bg); border: 1px solid var(--accent-border);
+  border-radius: var(--radius); padding: 10px 14px;
+  font-size: 12px; color: var(--accent2);
+  display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+}
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.section-header h2 { font-size: 18px; font-weight: 600; color: var(--text1); }
+.section-header p { font-size: 13px; color: var(--text3); margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<div id="img-preview"><img src="" id="preview-img" alt=""></div>
+<div id="toast" class="toast"><i class="ti ti-check" id="toast-icon"></i><span id="toast-msg"></span></div>
+
+<div id="app"></div>
+
+<script>
+// ─── CONFIG ────────────────────────────────────────────────────────
+const DRIVE_FILE_ID = '1Mj6nSZIDAO8qoQrPkf_8DYyo3fA4_iIR';
+const DRIVE_MCP_URL = 'https://drivemcp.googleapis.com/mcp/v1';
+const USERS = [
+  { u: 'admin', p: 'admin123', role: 'admin', label: 'Yönetici', initials: 'YÖ' },
+  { u: 'user1', p: 'user123',  role: 'user',  label: 'Kullanıcı', initials: 'K1' },
+];
+const CAT_COLORS = [
+  '#6c7bff','#34d399','#fbbf24','#f87171','#a78bfa',
+  '#38bdf8','#fb923c','#4ade80','#e879f9','#67e8f9'
+];
+
+// ─── STATE ─────────────────────────────────────────────────────────
+let S = {
+  authed: false, user: null,
+  view: 'products',
+  products: [], categories: [], eanPool: [],
+  form: freshForm(),
+  catEdit: null,          // { index, value }
+  loginErr: '', loginU: '', loginP: '',
+  loading: true, syncStatus: 'idle', // idle | syncing | synced | error
+  flash: null,
+};
+
+function freshForm() {
+  return { name:'', marketName:'', category:'', desc:'', images:[], ceDoc:null, errors:{} };
+}
+
+// ─── DRIVE API (via Claude) ────────────────────────────────────────
+async function callClaude(prompt) {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1000,
+      mcp_servers: [{ type: 'url', url: DRIVE_MCP_URL, name: 'gdrive' }],
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+  return res.json();
+}
+
+async function driveLoad() {
+  S.loading = true; render();
+  try {
+    const data = await callClaude(
+      `Use Google Drive MCP to download file id "${DRIVE_FILE_ID}". Return ONLY the raw JSON text content, nothing else.`
+    );
+    let json = '';
+    for (const b of (data.content || [])) {
+      if (b.type === 'mcp_tool_result') {
+        const t = b.content?.[0]?.text || '';
+        if (t.trim().startsWith('{')) { json = t; break; }
+      }
+      if (b.type === 'text' && b.text?.trim().startsWith('{')) { json = b.text; break; }
+    }
+    if (!json) {
+      for (const b of (data.content || [])) {
+        if (b.type === 'text') { const m = b.text?.match(/\{[\s\S]+\}/); if (m) { json = m[0]; break; } }
+      }
+    }
+    if (json) {
+      const p = JSON.parse(json.trim());
+      S.products = p.products || [];
+      S.categories = p.categories || defaultCategories();
+      S.eanPool = p.eanPool || [];
+    }
+    S.syncStatus = 'synced';
+  } catch(e) {
+    S.syncStatus = 'error';
+  }
+  S.loading = false; render();
+}
+
+async function driveSave() {
+  S.syncStatus = 'syncing'; renderSyncBadge();
+  const payload = JSON.stringify({ products: S.products, categories: S.categories, eanPool: S.eanPool });
+  try {
+    await callClaude(
+      `Use Google Drive MCP create_file tool: overwrite file id "${DRIVE_FILE_ID}" with this JSON content (mimeType application/json, disable_conversion_to_google_type true, title pazarlama_veritabani.json):\n${payload}`
+    );
+    S.syncStatus = 'synced';
+  } catch(e) {
+    S.syncStatus = 'error';
+    showToast('Drive kayıt hatası!', 'error');
+  }
+  renderSyncBadge();
+}
+
+function defaultCategories() {
+  return ['Elektronik','Giyim','Ev & Yaşam','Spor','Diğer'];
+}
+
+// ─── TOAST ─────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  const i = document.getElementById('toast-icon');
+  const m = document.getElementById('toast-msg');
+  if (!t) return;
+  clearTimeout(toastTimer);
+  t.className = `toast ${type}`;
+  i.className = type === 'success' ? 'ti ti-check' : type === 'syncing' ? 'ti ti-refresh' : 'ti ti-alert-circle';
+  m.textContent = msg;
+  requestAnimationFrame(() => t.classList.add('show'));
+  if (type !== 'syncing') toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function renderSyncBadge() {
+  const el = document.getElementById('drive-badge');
+  if (!el) return;
+  if (S.syncStatus === 'syncing') {
+    el.className = 'drive-badge syncing';
+    el.innerHTML = '<i class="ti ti-refresh" style="animation:spin 1s linear infinite"></i> Kaydediliyor...';
+  } else if (S.syncStatus === 'synced') {
+    el.className = 'drive-badge';
+    el.innerHTML = '<i class="ti ti-brand-google-drive"></i> Drive\'a bağlı';
+  } else {
+    el.className = 'drive-badge syncing';
+    el.innerHTML = '<i class="ti ti-alert-circle"></i> Bağlantı hatası';
+  }
+}
+
+function catColor(cat) {
+  const idx = S.categories.indexOf(cat);
+  return CAT_COLORS[idx % CAT_COLORS.length] || '#6c7bff';
+}
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ─── RENDER ────────────────────────────────────────────────────────
+function render() {
+  const app = document.getElementById('app');
+  if (!S.authed) { app.innerHTML = renderLogin(); attachLoginEvents(); return; }
+  if (S.loading) {
+    app.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100vh;gap:14px;color:var(--text2)">
+      <i class="ti ti-refresh" style="font-size:22px;animation:spin 1s linear infinite;color:var(--accent)"></i>
+      <span>Google Drive'dan yükleniyor...</span></div>`;
+    return;
+  }
+  app.innerHTML = `
+  <div class="app-shell">
+    ${renderSidebar()}
+    <div class="main">
+      ${renderTopbar()}
+      <div class="content">${renderView()}</div>
+    </div>
+  </div>`;
+  attachAppEvents();
+}
+
+function renderSidebar() {
+  const counts = {
+    products: S.products.length,
+    categories: S.categories.length,
+    ean: S.eanPool.filter(e => !e.usedBy).length + ' / ' + S.eanPool.length,
+  };
+  const nav = [
+    { id:'products', icon:'ti-package', label:'Ürünler', badge: counts.products },
+    { id:'add',      icon:'ti-circle-plus', label:'Yeni Ürün', badge:'' },
+    { id:'categories',icon:'ti-tag', label:'Kategoriler', badge: counts.categories },
+    { id:'ean',      icon:'ti-barcode', label:'EAN Havuzu', badge: counts.ean },
+  ];
+  return `<aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-mark"><i class="ti ti-building-store"></i></div>
+      <h1>Pazarlama<br>Veritabanı</h1>
+      <span>Ürün Yönetimi</span>
+    </div>
+    <nav class="sidebar-nav">
+      ${nav.map(n => `
+        <button class="nav-item ${S.view===n.id?'active':''}" onclick="setView('${n.id}')">
+          <i class="ti ${n.icon}"></i>
+          <span>${n.label}</span>
+          ${n.badge !== '' ? `<span class="nav-badge">${n.badge}</span>` : ''}
+        </button>`).join('')}
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar">${S.user.initials}</div>
+        <div class="user-info">
+          <div class="name">${S.user.label}</div>
+          <div class="role">${S.user.role === 'admin' ? 'Yönetici' : 'Kullanıcı'}</div>
+        </div>
+        <button class="btn-logout" onclick="doLogout()" title="Çıkış yap"><i class="ti ti-logout" style="font-size:16px"></i></button>
+      </div>
+    </div>
+  </aside>`;
+}
+
+function renderTopbar() {
+  const titles = { products:'Ürün Listesi', add:'Yeni Ürün Ekle', categories:'Kategoriler', ean:'EAN Kodu Havuzu' };
+  const syncIcon = S.syncStatus === 'syncing'
+    ? `<i class="ti ti-refresh" style="animation:spin 1s linear infinite"></i> Kaydediliyor...`
+    : `<i class="ti ti-brand-google-drive"></i> Drive'a bağlı`;
+  return `<div class="topbar">
+    <span class="page-title">${titles[S.view] || ''}</span>
+    <div class="topbar-right">
+      <span class="drive-badge ${S.syncStatus==='syncing'?'syncing':''}" id="drive-badge">${syncIcon}</span>
+      <button class="btn btn-sm" onclick="driveLoad()" title="Verileri yenile"><i class="ti ti-refresh"></i> Yenile</button>
+    </div>
+  </div>`;
+}
+
+function renderView() {
+  if (S.view === 'products')    return renderProducts();
+  if (S.view === 'add')         return renderAdd();
+  if (S.view === 'categories')  return renderCategories();
+  if (S.view === 'ean')         return renderEAN();
+  return '';
+}
+
+// ── PRODUCTS ──────────────────────────────────────────────────────
+function renderProducts() {
+  return `
+  <div class="stats-grid">
+    <div class="stat-card blue">
+      <div class="stat-icon"><i class="ti ti-package"></i></div>
+      <div class="stat-value">${S.products.length}</div>
+      <div class="stat-label">Toplam Ürün</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-icon"><i class="ti ti-barcode"></i></div>
+      <div class="stat-value">${S.eanPool.filter(e=>!e.usedBy).length}</div>
+      <div class="stat-label">Kullanılabilir EAN</div>
+    </div>
+    <div class="stat-card amber">
+      <div class="stat-icon"><i class="ti ti-tag"></i></div>
+      <div class="stat-value">${S.categories.length}</div>
+      <div class="stat-label">Kategori</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-icon"><i class="ti ti-certificate"></i></div>
+      <div class="stat-value">${S.products.filter(p=>p.ceDoc).length}</div>
+      <div class="stat-label">CE Belgeli</div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <h2>Kayıtlı Ürünler</h2>
+      <button class="btn btn-primary btn-sm" onclick="setView('add')">
+        <i class="ti ti-plus"></i> Ürün Ekle
+      </button>
+    </div>
+    ${S.products.length === 0 ? `
+      <div class="empty-state">
+        <i class="ti ti-package-off"></i>
+        <p>Henüz ürün eklenmedi</p>
+        <small>Yeni Ürün Ekle sekmesinden başlayabilirsiniz.</small>
+      </div>` : `
+    <table>
+      <thead><tr>
+        <th style="width:56px">Görsel</th>
+        <th>Ürün Adı</th>
+        <th>Pazaryeri Adı</th>
+        <th>Kategori</th>
+        <th>EAN Kodu</th>
+        <th>Dosyalar</th>
+        <th>Ekleyen</th>
+        <th style="width:48px"></th>
+      </tr></thead>
+      <tbody>
+        ${S.products.map((p,i) => {
+          const img = p.images && p.images[0];
+          const cc = catColor(p.category);
+          return `<tr>
+            <td>${img
+              ? `<img class="thumb" src="${img}" onmouseover="showPreview(this,'${img}')" onmouseout="hidePreview()" alt="">`
+              : `<div class="thumb-placeholder"><i class="ti ti-photo-off"></i></div>`}
+            </td>
+            <td><strong style="color:var(--text1);font-weight:500">${esc(p.name)}</strong></td>
+            <td style="color:var(--text2)">${esc(p.marketName)}</td>
+            <td><span class="cat-pill" style="background:${cc}18;color:${cc};border:1px solid ${cc}33">
+              <span style="width:6px;height:6px;border-radius:50%;background:${cc};display:inline-block"></span>
+              ${esc(p.category)}
+            </span></td>
+            <td><span class="ean-mono">${esc(p.ean||'—')}</span></td>
+            <td style="color:var(--text3);font-size:12px">
+              <span style="color:var(--text2)">${(p.images||[]).length}</span> resim
+              ${p.ceDoc ? `<span style="color:var(--green);margin-left:6px"><i class="ti ti-certificate" style="font-size:13px"></i> CE</span>` : ''}
+            </td>
+            <td style="color:var(--text3);font-size:12px">${esc(p.addedBy||'')}</td>
+            <td>
+              <button class="btn btn-icon btn-danger btn-sm" onclick="deleteProduct(${i})" title="Sil">
+                <i class="ti ti-trash"></i>
+              </button>
+            </td>
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>`}
+  </div>`;
+}
+
+// ── ADD PRODUCT ───────────────────────────────────────────────────
+function renderAdd() {
+  const f = S.form;
+  const availEAN = S.eanPool.filter(e => !e.usedBy);
+  return `
+  ${availEAN.length === 0 ? `<div class="warning-box"><i class="ti ti-alert-triangle"></i> EAN havuzunda kullanılabilir kod kalmadı. EAN Havuzu sekmesinden yeni kodlar ekleyin.</div>` : ''}
+
+  <div class="form-card">
+    <h3><i class="ti ti-info-circle"></i> Temel Bilgiler</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Ürün Adı <span class="req">*</span></label>
+        <input type="text" id="f_name" value="${esc(f.name)}" placeholder="Dahili katalog adı">
+        ${f.errors.name ? `<span class="field-error"><i class="ti ti-alert-circle"></i>${f.errors.name}</span>` : ''}
+      </div>
+      <div class="form-group">
+        <label>Pazaryeri Adı <span class="req">*</span></label>
+        <input type="text" id="f_mname" value="${esc(f.marketName)}" placeholder="Trendyol, Amazon vb. için görünen ad">
+        ${f.errors.marketName ? `<span class="field-error"><i class="ti ti-alert-circle"></i>${f.errors.marketName}</span>` : ''}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Kategori <span class="req">*</span></label>
+        <select id="f_cat">
+          <option value="">— Kategori seçin —</option>
+          ${S.categories.map(c => `<option value="${esc(c)}" ${f.category===c?'selected':''}>${esc(c)}</option>`).join('')}
+        </select>
+        ${f.errors.category ? `<span class="field-error"><i class="ti ti-alert-circle"></i>${f.errors.category}</span>` : ''}
+      </div>
+      <div class="form-group">
+        <label>Atanacak EAN Kodu (otomatik)</label>
+        <input type="text" value="${availEAN.length ? availEAN[0].code : 'Kullanılabilir EAN yok'}" disabled
+          style="font-family:'JetBrains Mono',monospace;font-size:12px">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Açıklama</label>
+      <textarea id="f_desc" placeholder="Ürün açıklaması, teknik detaylar...">${esc(f.desc)}</textarea>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <h3><i class="ti ti-photo"></i> Ürün Görselleri <span style="font-size:12px;font-weight:400;color:var(--text3)">En az 2 görsel zorunlu</span></h3>
+    <div class="upload-zone" onclick="document.getElementById('img_inp').click()">
+      <i class="ti ti-cloud-upload"></i>
+      <p><strong>Görsel yüklemek için tıklayın</strong> veya sürükleyin</p>
+      <p style="margin-top:4px">JPG, PNG, WEBP · Birden fazla seçilebilir</p>
+    </div>
+    <input type="file" id="img_inp" accept="image/*" multiple style="display:none" onchange="addImages(this)">
+    ${f.errors.images ? `<span class="field-error" style="margin-top:6px"><i class="ti ti-alert-circle"></i>${f.errors.images}</span>` : ''}
+    <div class="file-chips" id="img_chips">
+      ${f.images.map((img,i) =>
+        `<div class="file-chip">
+          <img src="${img.src}" alt="">
+          <span class="chip-name">${esc(img.name)}</span>
+          <button class="chip-remove" onclick="removeImage(${i})">×</button>
+        </div>`).join('')}
+    </div>
+  </div>
+
+  <div class="form-card">
+    <h3><i class="ti ti-certificate"></i> CE Belgesi <span style="font-size:12px;font-weight:400;color:var(--text3)">Zorunlu · PDF veya görsel</span></h3>
+    <div class="upload-zone" onclick="document.getElementById('ce_inp').click()">
+      <i class="ti ti-file-certificate"></i>
+      <p><strong>CE belgesi yüklemek için tıklayın</strong></p>
+      <p style="margin-top:4px">PDF, JPG, PNG</p>
+    </div>
+    <input type="file" id="ce_inp" accept=".pdf,image/*" style="display:none" onchange="addCE(this)">
+    ${f.errors.ceDoc ? `<span class="field-error" style="margin-top:6px"><i class="ti ti-alert-circle"></i>${f.errors.ceDoc}</span>` : ''}
+    ${f.ceDoc ? `<div class="file-chips" style="margin-top:10px">
+      <div class="file-chip">
+        <i class="ti ti-file-certificate" style="font-size:20px;color:var(--accent2)"></i>
+        <span class="chip-name">${esc(f.ceDoc)}</span>
+        <button class="chip-remove" onclick="removeCE()">×</button>
+      </div></div>` : ''}
+  </div>
+
+  <div class="form-actions">
+    <button class="btn" onclick="resetForm()"><i class="ti ti-x"></i> Temizle</button>
+    <button class="btn btn-primary" onclick="submitProduct()" ${availEAN.length===0?'disabled':''}>
+      <i class="ti ti-check"></i> Ürünü Kaydet
+    </button>
+  </div>`;
+}
+
+// ── CATEGORIES ────────────────────────────────────────────────────
+function renderCategories() {
+  return `
+  <div class="section-header">
+    <div>
+      <h2>Kategoriler</h2>
+      <p>Kategori ekleyin, düzenleyin veya silin</p>
+    </div>
+  </div>
+
+  <div class="form-card" style="margin-bottom:16px">
+    <h3><i class="ti ti-plus"></i> Yeni Kategori</h3>
+    <div class="add-cat-row">
+      <input type="text" id="new_cat" value="${esc(S.catForm||'')}" placeholder="Kategori adı girin..." style="flex:1;padding:9px 12px;font-size:13px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text1);font-family:inherit">
+      <button class="btn btn-primary" onclick="addCategory()"><i class="ti ti-plus"></i> Ekle</button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <h2>Mevcut Kategoriler</h2>
+      <span style="font-size:12px;color:var(--text3)">${S.categories.length} kategori</span>
+    </div>
+    <div style="padding:12px 16px">
+      <div class="cat-list">
+        ${S.categories.map((c,i) => {
+          const cc = CAT_COLORS[i % CAT_COLORS.length];
+          const count = S.products.filter(p => p.category === c).length;
+          const isEditing = S.catEdit && S.catEdit.index === i;
+          return `<div class="cat-row">
+            <span class="cat-dot" style="background:${cc}"></span>
+            ${isEditing
+              ? `<input class="cat-edit-input" id="cat_edit_inp" type="text" value="${esc(S.catEdit.value)}" onkeydown="catEditKey(event,${i})">`
+              : `<span class="cat-name">${esc(c)}</span>`}
+            <span class="cat-count">${count} ürün</span>
+            <div style="display:flex;gap:6px">
+              ${isEditing
+                ? `<button class="btn btn-sm btn-primary" onclick="saveCatEdit(${i})"><i class="ti ti-check"></i> Kaydet</button>
+                   <button class="btn btn-sm" onclick="cancelCatEdit()"><i class="ti ti-x"></i></button>`
+                : `<button class="btn btn-sm btn-icon" onclick="startCatEdit(${i})" title="Düzenle"><i class="ti ti-pencil"></i></button>
+                   ${count === 0
+                     ? `<button class="btn btn-sm btn-icon btn-danger" onclick="deleteCategory(${i})" title="Sil"><i class="ti ti-trash"></i></button>`
+                     : `<button class="btn btn-sm btn-icon" disabled title="Kullanımda, silinemez" style="opacity:0.3;cursor:not-allowed"><i class="ti ti-trash"></i></button>`}`}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── EAN ───────────────────────────────────────────────────────────
+function renderEAN() {
+  const used = S.eanPool.filter(e => e.usedBy).length;
+  const avail = S.eanPool.length - used;
+  return `
+  <div class="section-header">
+    <div>
+      <h2>EAN Kodu Havuzu</h2>
+      <p>Kodları toplu yükleyin · Yeni ürünlere sırayla atanır</p>
+    </div>
+    <div style="display:flex;gap:14px">
+      <div style="text-align:right">
+        <div style="font-size:18px;font-weight:600;color:var(--green)">${avail}</div>
+        <div style="font-size:11px;color:var(--text3)">Kullanılabilir</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:18px;font-weight:600;color:var(--text2)">${used}</div>
+        <div style="font-size:11px;color:var(--text3)">Kullanılan</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-card" style="margin-bottom:16px">
+    <h3><i class="ti ti-upload"></i> Toplu Kod Yükleme</h3>
+    <div class="form-group">
+      <label>EAN Kodları — her satıra bir kod, ya da virgülle ayırın</label>
+      <textarea id="ean_inp" placeholder="8680000000001&#10;8680000000002&#10;8680000000003" style="font-family:'JetBrains Mono',monospace;font-size:12px;min-height:100px"></textarea>
+    </div>
+    <div id="ean_feedback"></div>
+    <button class="btn btn-primary" onclick="bulkAddEAN()"><i class="ti ti-upload"></i> Kodları Yükle</button>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header"><h2>Kod Listesi</h2></div>
+    <div style="padding:12px 16px">
+      ${S.eanPool.length === 0
+        ? `<div class="empty-state"><i class="ti ti-barcode-off"></i><p>EAN havuzu boş</p><small>Yukarıdan kod yükleyin.</small></div>`
+        : `<div class="ean-list">
+          ${S.eanPool.map((e,i) => `
+            <div class="ean-row ${e.usedBy?'used':''}">
+              <span class="ean-code-text">${esc(e.code)}</span>
+              ${e.usedBy
+                ? `<span class="ean-assigned">→ ${esc(e.usedBy)}</span>`
+                : `<span class="ean-available"><i class="ti ti-check" style="font-size:12px"></i> Kullanılabilir</span>`}
+              ${!e.usedBy
+                ? `<button class="btn btn-icon btn-danger btn-sm" onclick="removeEAN(${i})"><i class="ti ti-trash"></i></button>`
+                : `<span style="width:28px"></span>`}
+            </div>`).join('')}
+          </div>`}
+    </div>
+  </div>`;
+}
+
+// ── LOGIN ─────────────────────────────────────────────────────────
+function renderLogin() {
+  return `<div class="login-screen">
+    <div class="login-panel">
+      <div class="login-logo">
+        <div class="login-logo-mark"><i class="ti ti-building-store"></i></div>
+        <h1>Pazarlama Veritabanı</h1>
+        <p>Sadece yetkili kullanıcılar erişebilir</p>
+      </div>
+      ${S.loginErr ? `<div class="login-error"><i class="ti ti-alert-circle"></i>${S.loginErr}</div>` : ''}
+      <div class="form-group">
+        <label style="color:var(--text2)">Kullanıcı adı</label>
+        <input type="text" id="l_u" value="${esc(S.loginU)}" placeholder="kullanici_adi" autofocus>
+      </div>
+      <div class="form-group">
+        <label style="color:var(--text2)">Şifre</label>
+        <input type="password" id="l_p" placeholder="••••••••">
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:10px" onclick="doLogin()">
+        <i class="ti ti-login"></i> Giriş Yap
+      </button>
+      <div class="login-hint">admin / admin123 &nbsp;·&nbsp; user1 / user123</div>
+    </div>
+  </div>`;
+}
+
+// ─── EVENTS ────────────────────────────────────────────────────────
+function attachLoginEvents() {
+  document.getElementById('l_p')?.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+}
+
+function attachAppEvents() {
+  document.getElementById('new_cat')?.addEventListener('keydown', e => { if (e.key === 'Enter') addCategory(); });
+  const catInp = document.getElementById('cat_edit_inp');
+  if (catInp) { catInp.focus(); catInp.select(); catInp.addEventListener('input', e => { if (S.catEdit) S.catEdit.value = e.target.value; }); }
+  // sync form fields live
+  ['f_name','f_mname','f_desc'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', e => {
+      if (id==='f_name') S.form.name = e.target.value;
+      if (id==='f_mname') S.form.marketName = e.target.value;
+      if (id==='f_desc') S.form.desc = e.target.value;
+    });
+  });
+  document.getElementById('f_cat')?.addEventListener('change', e => { S.form.category = e.target.value; });
+}
+
+// ─── ACTIONS ───────────────────────────────────────────────────────
+function doLogin() {
+  const u = document.getElementById('l_u').value.trim();
+  const p = document.getElementById('l_p').value;
+  const found = USERS.find(x => x.u === u && x.p === p);
+  if (found) {
+    S.authed = true; S.user = found; S.loginErr = ''; S.loginU = '';
+    driveLoad();
+  } else {
+    S.loginErr = 'Kullanıcı adı veya şifre hatalı.'; S.loginU = u; render();
+  }
+}
+
+function doLogout() { S.authed = false; S.user = null; render(); }
+
+function setView(v) {
+  S.view = v; S.flash = null; S.catEdit = null;
+  if (v === 'add') S.form = freshForm();
+  render();
+}
+
+function addImages(input) {
+  const files = Array.from(input.files);
+  let done = 0;
+  files.forEach(f => {
+    const r = new FileReader();
+    r.onload = e => { S.form.images.push({ name: f.name, src: e.target.result }); done++; if (done === files.length) render(); };
+    r.readAsDataURL(f);
+  });
+  input.value = '';
+}
+function removeImage(i) { S.form.images.splice(i, 1); render(); }
+function addCE(input) { if (input.files[0]) { S.form.ceDoc = input.files[0].name; input.value = ''; render(); } }
+function removeCE() { S.form.ceDoc = null; render(); }
+
+function submitProduct() {
+  const name = document.getElementById('f_name').value.trim();
+  const marketName = document.getElementById('f_mname').value.trim();
+  const category = document.getElementById('f_cat').value;
+  const desc = document.getElementById('f_desc').value.trim();
+  const errors = {};
+  if (!name) errors.name = 'Ürün adı zorunludur.';
+  if (!marketName) errors.marketName = 'Pazaryeri adı zorunludur.';
+  if (!category) errors.category = 'Kategori seçimi zorunludur.';
+  if (S.form.images.length < 2) errors.images = 'En az 2 görsel yüklenmesi zorunludur.';
+  if (!S.form.ceDoc) errors.ceDoc = 'CE belgesi yüklenmesi zorunludur.';
+  if (Object.keys(errors).length) {
+    S.form = { ...S.form, name, marketName, category, desc, errors };
+    render(); return;
+  }
+  const avail = S.eanPool.filter(e => !e.usedBy);
+  if (!avail.length) { showToast('EAN havuzu boş!', 'error'); return; }
+  avail[0].usedBy = name;
+  S.products.push({ name, marketName, category, desc, images: S.form.images.map(i => i.src), ceDoc: S.form.ceDoc, ean: avail[0].code, addedBy: S.user.label, addedAt: new Date().toLocaleDateString('tr-TR') });
+  driveSave();
+  showToast(`"${name}" kaydedildi · EAN: ${avail[0].code}`);
+  S.view = 'products'; S.form = freshForm(); render();
+}
+
+function resetForm() { S.form = freshForm(); render(); }
+
+function deleteProduct(i) {
+  if (!confirm('Bu ürünü silmek istediğinizden emin misiniz?')) return;
+  const p = S.products[i];
+  const ean = S.eanPool.find(e => e.code === p.ean);
+  if (ean) ean.usedBy = null;
+  S.products.splice(i, 1);
+  driveSave(); render();
+  showToast('Ürün silindi.');
+}
+
+function addCategory() {
+  const v = document.getElementById('new_cat')?.value.trim();
+  if (!v) return;
+  if (S.categories.includes(v)) { showToast('Bu kategori zaten mevcut.', 'error'); return; }
+  S.categories.push(v);
+  S.catForm = ''; driveSave(); render();
+  showToast(`"${v}" kategorisi eklendi.`);
+}
+
+function startCatEdit(i) { S.catEdit = { index: i, value: S.categories[i] }; render(); }
+function cancelCatEdit() { S.catEdit = null; render(); }
+function catEditKey(e, i) { if (e.key === 'Enter') saveCatEdit(i); if (e.key === 'Escape') cancelCatEdit(); }
+function saveCatEdit(i) {
+  const newVal = S.catEdit?.value?.trim();
+  if (!newVal) return;
+  if (S.categories.includes(newVal) && S.categories[i] !== newVal) {
+    showToast('Bu isimde başka bir kategori var.', 'error'); return;
+  }
+  const old = S.categories[i];
+  S.categories[i] = newVal;
+  S.products.forEach(p => { if (p.category === old) p.category = newVal; });
+  S.catEdit = null; driveSave(); render();
+  showToast(`Kategori güncellendi.`);
+}
+function deleteCategory(i) {
+  if (!confirm('Kategoriyi silmek istediğinizden emin misiniz?')) return;
+  S.categories.splice(i, 1); driveSave(); render();
+  showToast('Kategori silindi.');
+}
+
+function bulkAddEAN() {
+  const raw = document.getElementById('ean_inp')?.value || '';
+  const codes = raw.split(/[\n,;]+/).map(s => s.trim()).filter(Boolean);
+  let added = 0, dupe = 0;
+  codes.forEach(code => {
+    if (S.eanPool.find(e => e.code === code)) { dupe++; return; }
+    S.eanPool.push({ code, usedBy: null }); added++;
+  });
+  driveSave();
+  const fb = document.getElementById('ean_feedback');
+  if (fb) fb.innerHTML = `<div class="info-box" style="margin-bottom:10px"><i class="ti ti-check"></i>${added} kod eklendi${dupe ? `, ${dupe} tekrar atlandı` : ''}</div>`;
+  if (document.getElementById('ean_inp')) document.getElementById('ean_inp').value = '';
+  showToast(`${added} EAN kodu yüklendi.`);
+  setTimeout(() => render(), 1800);
+}
+
+function removeEAN(i) { S.eanPool.splice(i, 1); driveSave(); render(); }
+
+// ─── IMAGE HOVER PREVIEW ───────────────────────────────────────────
+document.addEventListener('mousemove', e => {
+  const p = document.getElementById('img-preview');
+  if (p && p.style.display === 'block') {
+    p.style.left = (e.clientX + 14) + 'px';
+    p.style.top = Math.max(8, e.clientY - 110) + 'px';
+  }
+});
+function showPreview(el, src) {
+  if (!src) return;
+  const p = document.getElementById('img-preview');
+  document.getElementById('preview-img').src = src;
+  if (p) p.style.display = 'block';
+}
+function hidePreview() {
+  const p = document.getElementById('img-preview');
+  if (p) p.style.display = 'none';
+}
+
+// ─── INIT ──────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
+HTMLEOF
