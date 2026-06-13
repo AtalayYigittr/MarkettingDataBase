@@ -213,7 +213,7 @@ let S={
   catalogSelected:[],
 };
 
-function freshForm(){return{name:'',marketName:'',brandId:'',category:'',desc:'',techSpecs:'',usefulInfo:'',images:[],videos:[],ceDoc:null,errors:{}};}
+function freshForm(){return{name:'',marketName:'',brandId:'',category:'',desc:'',techSpecs:'',usefulInfo:'',images:[],videos:[],ceDoc:null,ceDocSrc:null,errors:{}};}
 function catColor(c){const i=S.categories.indexOf(c);return CAT_COLORS[i%CAT_COLORS.length]||'#6c7bff';}
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function getBrand(id){return S.brands.find(b=>b.id===id);}
@@ -372,6 +372,7 @@ function renderProducts(){
         <td><span class="ean-mono">${esc(p.ean||'—')}</span></td>
         <td style="font-size:12px;color:var(--text3)"><span style="color:var(--text2)">${(p.images||[]).length}</span>🖼 <span style="color:var(--text2)">${(p.videos||[]).length}</span>🎬${p.ceDoc?' <span style="color:var(--green)">CE</span>':''}</td>
         <td><div style="display:flex;gap:5px">
+          <button class="btn btn-icon btn-sm" onclick="showProductFiles(${i},this)" title="Dosyaları İndir" style="color:var(--green);border-color:rgba(52,211,153,0.3);background:var(--green-bg)"><i class="ti ti-download"></i></button>
           <button class="btn btn-icon btn-amber btn-sm" onclick="editProduct(${i})" title="Düzenle"><i class="ti ti-pencil"></i></button>
           <button class="btn btn-icon btn-danger btn-sm" onclick="deleteProduct(${i})" title="Sil"><i class="ti ti-trash"></i></button>
         </div></td>
@@ -412,7 +413,7 @@ function renderAdd(){
     <div class="upload-zone" onclick="document.getElementById('img_inp').click()"><i class="ti ti-cloud-upload"></i><p><strong>Görsel yüklemek için tıklayın</strong></p><p style="margin-top:4px">JPG, PNG, WEBP · Birden fazla seçilebilir</p></div>
     <input type="file" id="img_inp" accept="image/*" multiple style="display:none" onchange="addImages(this)">
     ${f.errors.images?`<span class="field-error" style="margin-top:6px"><i class="ti ti-alert-circle"></i>${f.errors.images}</span>`:''}
-    <div class="file-chips">${f.images.map((img,i)=>`<div class="file-chip"><img src="${img.src}" alt="" onclick="openLightbox('${img.src}','${esc(img.name)}')"><span class="chip-name">${esc(img.name)}</span><button class="chip-remove" onclick="removeImage(${i})">×</button></div>`).join('')}</div>
+    <div class="file-chips">${f.images.map((img,i)=>`<div class="file-chip"><img src="${img.src}" alt="" onclick="openLightbox('${img.src}','${esc(img.name)}')" style="cursor:zoom-in"><span class="chip-name">${esc(img.name)}</span><button title="İndir" onclick="downloadFile('${img.src}','${esc(img.name)}')" style="background:none;border:none;color:var(--green);cursor:pointer;padding:2px;font-size:14px;display:flex;line-height:1"><i class="ti ti-download"></i></button><button class="chip-remove" onclick="removeImage(${i})">×</button></div>`).join('')}</div>
   </div>
   <div class="form-card">
     <h3><i class="ti ti-video"></i> Ürün Videoları <span style="font-size:12px;font-weight:400;color:var(--text3)">İsteğe bağlı</span></h3>
@@ -422,14 +423,14 @@ function renderAdd(){
     </div>
     <div class="upload-zone" onclick="document.getElementById('vid_inp').click()"><i class="ti ti-movie"></i><p><strong>Video dosyası yüklemek için tıklayın</strong></p><p style="margin-top:4px">MP4, MOV, AVI, WEBM</p></div>
     <input type="file" id="vid_inp" accept="video/*" multiple style="display:none" onchange="addVideos(this)">
-    <div class="file-chips" style="margin-top:10px">${(f.videos||[]).map((v,i)=>`<div class="video-chip"><i class="ti ti-video"></i><span class="chip-name" style="max-width:200px">${esc(v.name||v.url)}</span><button class="chip-remove" onclick="removeVideo(${i})">×</button></div>`).join('')}</div>
+    <div class="file-chips" style="margin-top:10px">${(f.videos||[]).map((v,i)=>`<div class="video-chip"><i class="ti ti-video"></i><span class="chip-name" style="max-width:180px">${esc(v.name||v.url)}</span>${v.src?`<button title="İndir" onclick="downloadFile('${v.src}','${esc(v.name)}')" style="background:none;border:none;color:var(--green);cursor:pointer;padding:2px;font-size:14px;display:flex;line-height:1"><i class="ti ti-download"></i></button>`:v.url?`<a href="${esc(v.url)}" target="_blank" style="color:var(--accent2);font-size:12px;text-decoration:none" title="Aç"><i class="ti ti-external-link"></i></a>`:''}<button class="chip-remove" onclick="removeVideo(${i})">×</button></div>`).join('')}</div>
   </div>
   <div class="form-card">
     <h3><i class="ti ti-certificate"></i> CE Belgesi <span style="font-size:12px;font-weight:400;color:var(--text3)">Zorunlu · PDF veya görsel</span></h3>
     <div class="upload-zone" onclick="document.getElementById('ce_inp').click()"><i class="ti ti-file-certificate"></i><p><strong>CE belgesi yüklemek için tıklayın</strong></p><p style="margin-top:4px">PDF, JPG, PNG</p></div>
     <input type="file" id="ce_inp" accept=".pdf,image/*" style="display:none" onchange="addCE(this)">
     ${f.errors.ceDoc?`<span class="field-error" style="margin-top:6px"><i class="ti ti-alert-circle"></i>${f.errors.ceDoc}</span>`:''}
-    ${f.ceDoc?`<div class="file-chips" style="margin-top:10px"><div class="file-chip"><i class="ti ti-file-certificate" style="font-size:20px;color:var(--accent2)"></i><span class="chip-name">${esc(f.ceDoc)}</span><button class="chip-remove" onclick="removeCE()">×</button></div></div>`:''}
+    ${f.ceDoc?`<div class="file-chips" style="margin-top:10px"><div class="file-chip"><i class="ti ti-file-certificate" style="font-size:20px;color:var(--accent2)"></i><span class="chip-name">${esc(f.ceDoc)}</span>${f.ceDocSrc?`<button title="İndir" onclick="downloadFile('${f.ceDocSrc}','${esc(f.ceDoc)}')" style="background:none;border:none;color:var(--green);cursor:pointer;padding:2px;font-size:14px;display:flex;line-height:1"><i class="ti ti-download"></i></button>`:''}<button class="chip-remove" onclick="removeCE()">×</button></div></div>`:''}
   </div>
   <div class="form-actions">
     <button class="btn" onclick="cancelEdit()"><i class="ti ti-x"></i> İptal</button>
@@ -479,7 +480,7 @@ function renderMaterials(){
       <button onclick="closeMaterialModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;color:var(--text2);cursor:pointer;font-size:20px"><i class="ti ti-x"></i></button>
       <h2 style="font-size:16px;font-weight:600;margin-bottom:20px;color:var(--text1)" id="mat-modal-title">Malzeme Ekle</h2>
       <div class="form-group"><label>Malzeme Adı <span class="req">*</span></label><input type="text" id="mat_name" placeholder="Örn: Yaz Kampanyası Banner"></div>
-      <div class="form-group"><label>Nerede Kullanılacak <span class="req">*</span></label><input type="text" id="mat_where" placeholder="Örn: Ana sayfa hero banner, 1920×1080px"></div>
+      <div class="form-group"><label>Nerede Kullanılacak <span class="req">*</span></label><input type="text" id="mat_where" placeholder="Örn: Ana sayfa hero banner, Instagram story, e-posta header..."></div>
       <div class="form-group">
         <label>Kullanım Yeri Etiketleri</label>
         <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:2px" id="mat_tag_wrap">
@@ -618,8 +619,9 @@ function attachAppEvents(){
 /* ── PRODUCT ACTIONS ── */
 function addImages(input){Array.from(input.files).forEach(f=>{const r=new FileReader();r.onload=e=>{S.form.images.push({name:f.name,src:e.target.result});render();};r.readAsDataURL(f);});input.value='';}
 function removeImage(i){S.form.images.splice(i,1);render();}
-function addCE(input){if(input.files[0]){S.form.ceDoc=input.files[0].name;input.value='';render();}}
-function removeCE(){S.form.ceDoc=null;render();}
+function addCE(input){if(input.files[0]){const f=input.files[0];const r=new FileReader();r.onload=e=>{S.form.ceDoc=f.name;S.form.ceDocSrc=e.target.result;render();};r.readAsDataURL(f);}input.value='';}
+function removeCE(){S.form.ceDoc=null;S.form.ceDocSrc=null;render();}
+function downloadFile(src,name){const a=document.createElement('a');a.href=src;a.download=name||'dosya';document.body.appendChild(a);a.click();document.body.removeChild(a);}
 function addVideoUrl(){const v=document.getElementById('vid_url');if(!v||!v.value.trim())return;S.form.videos.push({type:'url',url:v.value.trim(),name:v.value.trim()});v.value='';render();}
 function addVideos(input){Array.from(input.files).forEach(f=>{const r=new FileReader();r.onload=e=>{S.form.videos.push({type:'file',name:f.name,src:e.target.result});render();};r.readAsDataURL(f);});input.value='';}
 function removeVideo(i){S.form.videos.splice(i,1);render();}
@@ -631,7 +633,7 @@ function editProduct(i){
     name:p.name||'',marketName:p.marketName||'',brandId:p.brandId||'',category:p.category||'',
     desc:p.desc||'',techSpecs:p.techSpecs||'',usefulInfo:p.usefulInfo||'',
     images:(p.images||[]).map((src,j)=>({name:'görsel_'+(j+1)+'.jpg',src})),
-    videos:p.videos||[],ceDoc:p.ceDoc||null,errors:{}
+    videos:p.videos||[],ceDoc:p.ceDoc||null,ceDocSrc:p.ceDocSrc||null,errors:{}
   };
   S.view='add';render();
 }
@@ -656,18 +658,42 @@ function submitProduct(){
   if(S.editIndex!==null){
     // update existing
     const p=S.products[S.editIndex];
-    S.products[S.editIndex]={...p,name,marketName,brandId,category,desc,techSpecs,usefulInfo,images:S.form.images.map(i=>i.src),videos:S.form.videos||[],ceDoc:S.form.ceDoc};
+    S.products[S.editIndex]={...p,name,marketName,brandId,category,desc,techSpecs,usefulInfo,images:S.form.images.map(i=>i.src),videos:S.form.videos||[],ceDoc:S.form.ceDoc,ceDocSrc:S.form.ceDocSrc||p.ceDocSrc||null};
     showToast(`"${name}" güncellendi.`);S.editIndex=null;
   } else {
     const avail=S.eanPool.filter(e=>!e.usedBy);
     if(!avail.length){showToast('EAN havuzu boş!','error');return;}
     avail[0].usedBy=name;
-    S.products.push({name,marketName,brandId,category,desc,techSpecs,usefulInfo,images:S.form.images.map(i=>i.src),videos:S.form.videos||[],ceDoc:S.form.ceDoc,ean:avail[0].code,addedBy:S.googleUser?.name||S.googleUser?.email||'?',addedAt:new Date().toLocaleDateString('tr-TR')});
+    S.products.push({name,marketName,brandId,category,desc,techSpecs,usefulInfo,images:S.form.images.map(i=>i.src),videos:S.form.videos||[],ceDoc:S.form.ceDoc,ceDocSrc:S.form.ceDocSrc||null,ean:avail[0].code,addedBy:S.googleUser?.name||S.googleUser?.email||'?',addedAt:new Date().toLocaleDateString('tr-TR')});
     showToast(`"${name}" kaydedildi · EAN: ${S.eanPool.find(e=>e.usedBy===name)?.code}`);
   }
   saveDB();S.form=freshForm();S.view='products';render();
 }
 
+function showProductFiles(i,btn){
+  // Remove existing popup
+  const existing=document.getElementById('_file_popup');if(existing)existing.remove();
+  const p=S.products[i];
+  const items=[];
+  (p.images||[]).forEach((src,j)=>items.push({icon:'ti-photo',label:'Görsel '+(j+1),src,name:'gorsel_'+(j+1)+'.jpg',type:'img'}));
+  (p.videos||[]).forEach((v,j)=>{
+    if(v.src)items.push({icon:'ti-video',label:'Video '+(j+1),src:v.src,name:v.name||('video_'+(j+1)+'.mp4'),type:'file'});
+    else if(v.url)items.push({icon:'ti-external-link',label:'Video URL '+(j+1),src:v.url,name:v.name,type:'url'});
+  });
+  if(p.ceDocSrc)items.push({icon:'ti-certificate',label:'CE Belgesi',src:p.ceDocSrc,name:p.ceDoc||'ce_belgesi',type:'file'});
+  if(!items.length){showToast('Bu üründe indirilebilir dosya yok.','error');return;}
+  const popup=document.createElement('div');popup.id='_file_popup';
+  const rect=btn.getBoundingClientRect();
+  popup.style.cssText=`position:fixed;top:${rect.bottom+6}px;right:${window.innerWidth-rect.right}px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:8px;z-index:9900;min-width:220px;box-shadow:var(--shadow)`;
+  popup.innerHTML=`<div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;padding:4px 8px 8px">Dosyaları İndir</div>`+
+    items.map(it=>`<div style="display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:var(--radius);cursor:pointer;transition:background .1s" onmouseover="this.style.background='var(--bg3)'" onmouseout="this.style.background=''" onclick="${it.type==='url'?`window.open('${it.src}','_blank')`:`downloadFile('${it.src}','${esc(it.name)}')`};document.getElementById('_file_popup').remove()">
+      <i class="ti ${it.icon}" style="font-size:16px;color:var(--accent2);flex-shrink:0"></i>
+      <span style="font-size:12px;color:var(--text1);flex:1">${esc(it.label)}</span>
+      <i class="ti ${it.type==='url'?'ti-external-link':'ti-download'}" style="font-size:13px;color:var(--text3)"></i>
+    </div>`).join('');
+  document.body.appendChild(popup);
+  setTimeout(()=>document.addEventListener('click',function h(e){if(!popup.contains(e.target)&&e.target!==btn){popup.remove();document.removeEventListener('click',h);}},),10);
+}
 function deleteProduct(i){
   if(!confirm('Bu ürünü silmek istediğinizden emin misiniz?'))return;
   const p=S.products[i];const ean=S.eanPool.find(e=>e.code===p.ean);if(ean)ean.usedBy=null;
